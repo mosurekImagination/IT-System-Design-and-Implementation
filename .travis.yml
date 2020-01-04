@@ -3,8 +3,8 @@ services:
     - docker
 before_install:
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    - docker build -t armagedon444/ng-powierzenia3000 -f ./app/frontend/Dockerfile.dev
-    - docker build -t armagedon444/powierzenia3000 -f ./app/backend/Dockerfile.dev
+    - docker build -t armagedon444/ng-powierzenia3000 -f ./app/frontend/Dockerfile.dev ./app/frontend/
+    - docker build -t armagedon444/powierzenia3000 -f ./app/backend/Dockerfile.dev ./app/backend/
 
 script:
     - docker run armagedon444/ng-powierzenia3000
