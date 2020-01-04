@@ -12,6 +12,7 @@ group = "pwr.psi"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
+
 repositories {
 	mavenCentral()
 }
@@ -27,7 +28,9 @@ dependencies {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 	testImplementation("org.springframework.security:spring-security-test")
-	implementation(group="com.h2database", name="h2", version="1.4.200")
+	testImplementation(group="com.h2database", name="h2", version="1.4.200")
+	implementation(group="mysql", name="mysql-connector-java", version="8.0.18")
+	implementation(group="log4j", name="log4j", version="1.2.17")
 
 }
 

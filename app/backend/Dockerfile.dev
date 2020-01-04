@@ -1,0 +1,6 @@
+FROM gradle:jdk8 AS GRADLE_BUILD
+
+WORKDIR /build/
+COPY build.gradle.kts /build/
+COPY src /build/src/
+RUN gradle build --no-daemon 
