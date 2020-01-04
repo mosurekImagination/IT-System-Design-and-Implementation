@@ -12,7 +12,7 @@ import javax.validation.Valid
 class AuthController {
 
     @GetMapping("/me")
-    fun me():ResponseEntity<Any> = ResponseEntity.ok("success request")
+    fun me():ResponseEntity<Any> = ResponseEntity.ok(SomeGetFields("Successful response"))
 
     @GetMapping("/me2")
     fun me(@Valid query: SomeGetFields):ResponseEntity<Any> = ResponseEntity.ok(query.field)
