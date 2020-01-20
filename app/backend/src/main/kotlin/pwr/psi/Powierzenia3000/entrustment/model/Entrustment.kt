@@ -1,5 +1,6 @@
 package pwr.psi.Powierzenia3000.entrustment.model
 
+import pwr.psi.Powierzenia3000.profile.model.Lecturer
 import javax.persistence.*
 
 @Entity
@@ -11,9 +12,12 @@ data class Entrustment(
         val entrustmentStatus: EntrustmentStatus = EntrustmentStatus.NEW,
         val hours: Double? = 0.0,
         //TODO
-        val teacherId: Long = 0,
-        //TODO
-        val courseId: Long = 0
+        @ManyToOne
+        @JoinColumn(name = "lecturer_id")
+        val lecturer: Lecturer? = null,
+        @ManyToOne
+        @JoinColumn(name = "course_id")
+        val courseId: Course? = null
 )
 
 
