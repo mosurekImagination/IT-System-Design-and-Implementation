@@ -7,10 +7,9 @@ import pwr.psi.Powierzenia3000.security.CustomUserDetails
 import pwr.psi.Powierzenia3000.auth.dataprovider.UserRepository
 
 @Service
-open class CustomUserDetailsService (private val userRepository: UserRepository) : UserDetailsService {
+class CustomUserDetailsService (private val userRepository: UserRepository) : UserDetailsService {
 
-    override fun loadUserByUsername(username: String): UserDetails {
-        return CustomUserDetails(userRepository.findOneByUserName(username)!!)
-    }
+    override fun loadUserByUsername(username: String): UserDetails =
+            CustomUserDetails(userRepository.findOneByUserName(username)!!)
 
 }
