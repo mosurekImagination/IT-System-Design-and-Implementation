@@ -10,12 +10,9 @@ data class Entrustment(
         val answer: String? = "",
         val entrustmentStatus: EntrustmentStatus = EntrustmentStatus.NEW,
         val hours: Double? = 0.0,
-        //TODO
         @ManyToOne
-        @JoinColumn(name = "lecturer_id")
         val lecturer: Lecturer? = null,
         @ManyToOne
-        @JoinColumn(name = "course_id")
         val courseId: Course? = null
 )
 

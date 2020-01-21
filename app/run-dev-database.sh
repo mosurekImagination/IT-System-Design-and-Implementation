@@ -1,1 +1,2 @@
-docker-compose up -d mysql
+docker-compose up -d mysql 
+$SHELL 
