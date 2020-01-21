@@ -1,4 +1,4 @@
-package pwr.psi.Powierzenia3000.profile.model
+package pwr.psi.Powierzenia3000.shared.model
 
 import javax.persistence.*
 
@@ -6,22 +6,21 @@ import javax.persistence.*
 @Table(name = "lecturer")
 data class Lecturer(
         @Id @GeneratedValue
-        val id:Long = 0,
+        val id: Long = 0,
         val token: String = "",
         val name: String = "",
         val surname: String = "",
         val title: Title = Title.INŻYNIER,
         val pesel: Long = 0,
-        @ManyToMany
+        @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
         @JoinTable(
                 name = "teacher_knowledge",
                 joinColumns = [JoinColumn(name = "lecturer_id")],
                 inverseJoinColumns = [JoinColumn(name = "knowledge_area_id")]
         )
-        val knowledgeArea: Set<KnowledgeArea>
+        val knowledgeArea: Set<KnowledgeArea> = setOf()
 )
 
-
-enum class Title{
+enum class Title {
     INŻYNIER, MAGISTER, LICENCJAT, DOKTOR, DOKTOR_HABILITOWANY, PROFESOR, ARCHITEKT
 }

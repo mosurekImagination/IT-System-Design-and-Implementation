@@ -1,4 +1,4 @@
-package pwr.psi.Powierzenia3000.entrustment.model
+package pwr.psi.Powierzenia3000.shared.model
 
 import javax.persistence.Entity
 import javax.persistence.Id

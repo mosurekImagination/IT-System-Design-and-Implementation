@@ -1,6 +1,5 @@
-package pwr.psi.Powierzenia3000.entrustment.model
+package pwr.psi.Powierzenia3000.shared.model
 
-import pwr.psi.Powierzenia3000.profile.model.Lecturer
 import javax.persistence.*
 
 @Entity
