@@ -8,4 +8,4 @@ RUN gradle build --no-daemon
 FROM openjdk:8-jre-alpine
 WORKDIR /app
 COPY --from=GRADLE_BUILD /build/build/libs/ /app/
-ENTRYPOINT ["java", "-jar", "build-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "build-0.0.1-SNAPSHOT.jar", "--spring.profiles.active=prod"]
