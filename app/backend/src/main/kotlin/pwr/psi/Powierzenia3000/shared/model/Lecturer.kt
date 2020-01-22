@@ -3,7 +3,6 @@ package pwr.psi.Powierzenia3000.shared.model
 import javax.persistence.*
 
 @Entity
-@Table(name = "lecturer")
 data class Lecturer(
         @Id @GeneratedValue
         val id: Long = 0,
@@ -12,12 +11,8 @@ data class Lecturer(
         val surname: String = "",
         val title: Title = Title.INŻYNIER,
         val pesel: Long = 0,
-        @ManyToMany(cascade = [CascadeType.ALL], fetch = FetchType.LAZY)
-        @JoinTable(
-                name = "teacher_knowledge",
-                joinColumns = [JoinColumn(name = "lecturer_id")],
-                inverseJoinColumns = [JoinColumn(name = "knowledge_area_id")]
-        )
+
+        @ManyToMany(mappedBy = "lecturers")
         val knowledgeArea: Set<KnowledgeArea> = setOf()
 )
 
