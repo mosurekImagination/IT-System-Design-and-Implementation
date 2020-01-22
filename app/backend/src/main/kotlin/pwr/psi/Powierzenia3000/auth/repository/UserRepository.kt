@@ -6,5 +6,5 @@ import pwr.psi.Powierzenia3000.shared.model.User
 
 @Repository
 interface UserRepository : JpaRepository<User, Long> {
-    fun findOneByToken(token: String): User?
+    fun findUserByToken(token: String): User?
 }
