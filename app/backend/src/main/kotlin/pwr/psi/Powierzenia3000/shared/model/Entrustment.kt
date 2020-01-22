@@ -3,7 +3,6 @@ package pwr.psi.Powierzenia3000.shared.model
 import javax.persistence.*
 
 @Entity
-@Table(name = "entrustment")
 data class Entrustment(
         @Id @GeneratedValue
         val id: Long = 0,
@@ -20,3 +19,12 @@ data class Entrustment(
 enum class EntrustmentStatus {
     NEW, REJECTED, ACCEPTED, PROPOSED
 }
+
+fun String.toEntrustmentStatus() =
+    when(this){
+        "NEW" -> EntrustmentStatus.NEW
+        "REJECTED" -> EntrustmentStatus.REJECTED
+        "ACCEPTED" -> EntrustmentStatus.ACCEPTED
+        "PROPOSED" -> EntrustmentStatus.PROPOSED
+        else -> EntrustmentStatus.NEW
+    }
