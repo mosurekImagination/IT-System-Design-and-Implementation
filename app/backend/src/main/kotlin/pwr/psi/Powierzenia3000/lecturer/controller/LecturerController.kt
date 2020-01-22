@@ -11,10 +11,6 @@ import pwr.psi.Powierzenia3000.utils.toResponseEntity
 @RequestMapping("/lecturer")
 class LecturerController(private val lecturerService: LecturerService) {
 
-    @GetMapping("/token/{token}")
-    fun getLecturerByToken(@PathVariable token: String): ResponseEntity<Lecturer> =
-            lecturerService.getLecturerByToken(token).toResponseEntity()
-
     @GetMapping("/surname/{surname}")
     fun getLecturerBySurname(@PathVariable surname: String): ResponseEntity<Lecturer> =
             lecturerService.getLecturerBySurname(surname).toResponseEntity()
