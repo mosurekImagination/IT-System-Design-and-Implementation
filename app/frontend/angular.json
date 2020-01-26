@@ -57,6 +57,13 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "en": {
+              "aot": true,
+              "outputPath": "dist/ng-powierzenia3000-en",
+              "i18nFile": "src/i18n/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en"
             }
           }
         },
@@ -68,6 +75,9 @@
           "configurations": {
             "production": {
               "browserTarget": "ng-powierzenia3000:build:production"
+            },
+            "en": {
+              "browserTarget": "ng-powierzenia3000:build:en"
             }
           }
         },
@@ -105,6 +115,21 @@
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        },
+        "xliffmerge": {
+          "builder": "@ngx-i18nsupport/tooling:xliffmerge",
+          "options": {
+            "xliffmergeOptions": {
+              "i18nFormat": "xlf",
+              "srcDir": "src/i18n",
+              "genDir": "src/i18n",
+              "defaultLanguage": "pl",
+              "languages": [
+                "pl",
+                "en"
+              ]
+            }
           }
         }
       }
