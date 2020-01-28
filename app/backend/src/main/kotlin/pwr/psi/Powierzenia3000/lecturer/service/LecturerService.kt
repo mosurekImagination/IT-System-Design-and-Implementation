@@ -11,8 +11,6 @@ class LecturerService(private val lecturerRepository: LecturerRepository) {
 
     fun getLecturerBySurname(surname: String): Lecturer? = lecturerRepository.findLecturerBySurname(surname)
 
-    fun getLecturerByToken(token: String): Lecturer? = lecturerRepository.findLecturerByToken(token)
-
     fun postLecturer(lecturer: Lecturer) = lecturerRepository.save(lecturer)
 
 }
