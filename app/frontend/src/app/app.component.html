@@ -3,7 +3,7 @@
     <span id="title">Powierzenia 3000</span>
     <span class="login_space"></span>
     <div *ngIf="auth.user$ | async as user; else login">
-      Witaj, {{ user.role }}
+      Witaj, {{ roleMap.roleFromResponse(user.role) }}
       <button class="signButton" mat-raised-button (click)="auth.signOut()">
         Wyloguj
       </button>

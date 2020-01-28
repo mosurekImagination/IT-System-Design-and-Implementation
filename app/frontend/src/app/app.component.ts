@@ -3,6 +3,7 @@ import { ApiService } from "./core/api.service";
 import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./core/auth.service";
 import { TimeoutError } from "rxjs";
+import { UserRoleMapperService } from './core/user-role-mapper.service';
 
 @Component({
   selector: "app-root",
@@ -10,7 +11,7 @@ import { TimeoutError } from "rxjs";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-  constructor(private apiService: ApiService, private auth: AuthService) {}
+  constructor(private apiService: ApiService, private auth: AuthService, private roleMap : UserRoleMapperService) {}
 
   emailText: string;
   passwordText: string;

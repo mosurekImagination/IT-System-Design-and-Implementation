@@ -10,8 +10,8 @@ import {
 } from "@angular/fire/firestore";
 
 import { Observable, of } from "rxjs";
-import { switchMap } from "rxjs/operators";
-import { User } from "src/shared/models/User";
+import { switchMap, map } from "rxjs/operators";
+import { User } from 'src/shared/models/User';
 
 @Injectable({
   providedIn: "root"
@@ -38,7 +38,6 @@ export class AuthService {
 
   async emailPasswordSignIn(email: string, password: string){
     const credential = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-    // return this.updateUserData(credential.user);
   }
 
   async signOut(){
