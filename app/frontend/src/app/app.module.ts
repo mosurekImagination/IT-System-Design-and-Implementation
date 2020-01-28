@@ -1,4 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, TRANSLATIONS, LOCALE_ID } from '@angular/core';
+
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -6,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
+import { I18n } from '@ngx-translate/i18n-polyfill';
 import { MaterialModule } from './core/material.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -41,7 +44,9 @@ const firebaseConfig = {
     MaterialModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    I18n
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
