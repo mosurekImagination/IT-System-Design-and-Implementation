@@ -28,6 +28,8 @@ out/
 /nbdist/
 /.nb-gradle/
 
+/logs
+
 ### VS Code ###
 .vscode/
 /logs/application-logs.log
