@@ -11,9 +11,9 @@ import { tap } from 'rxjs/operators';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  get(path: string, params: HttpParams = new HttpParams()): Observable<any> {
+  get<T>(path: string, params: HttpParams = new HttpParams()): Observable<any> {
     return this.http
-      .get(`${environment.api_url}${path}`, { params })
+      .get<T>(`${environment.api_url}${path}`, { params })
       .pipe(tap(response => console.log(response)));  }
 
   put(path: string, body: Object = {}): Observable<any> {
@@ -35,4 +35,17 @@ export class ApiService {
       .delete(`${environment.api_url}${path}`)
       .pipe(tap(response => console.log(response)));
   }
+}
+
+class Lecturer {
+  id: number;
+  token: string;
+  name: string;
+  surname: string;
+  title: Title;
+  pesel: number;
+}
+
+enum Title{
+  MAGISTER
 }
