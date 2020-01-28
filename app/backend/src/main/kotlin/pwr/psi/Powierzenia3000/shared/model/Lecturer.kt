@@ -6,7 +6,6 @@ import javax.persistence.*
 data class Lecturer(
         @Id @GeneratedValue
         val id: Long = 0,
-        val token: String = "",
         val name: String = "",
         val surname: String = "",
         val title: Title = Title.INŻYNIER,
