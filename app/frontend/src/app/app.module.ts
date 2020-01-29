@@ -13,6 +13,8 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { FormsModule } from '@angular/forms';
+import { MainProfileComponent } from './profile/main-profile/main-profile.component';
+import { ProfileModule } from './profile/profile.module';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDRRv6g8E_s0qYPoLO53bozDl7HYfo27g8",
@@ -40,7 +42,8 @@ const firebaseConfig = {
     CoreModule,
     HttpClientModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ProfileModule
   ],
   providers: [
     I18n
