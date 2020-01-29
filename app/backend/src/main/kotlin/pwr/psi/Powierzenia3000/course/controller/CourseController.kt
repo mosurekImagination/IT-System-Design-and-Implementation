@@ -4,16 +4,28 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import pwr.psi.Powierzenia3000.course.service.CourseService
+import pwr.psi.Powierzenia3000.course.service.CourseTranslationService
 import pwr.psi.Powierzenia3000.shared.model.Course
+import pwr.psi.Powierzenia3000.shared.model.CourseTranslation
+import pwr.psi.Powierzenia3000.shared.model.LanguageCode
+import pwr.psi.Powierzenia3000.shared.model.toLanguageCode
 import pwr.psi.Powierzenia3000.utils.toResponseEntity
 
 @RestController
 @RequestMapping("/course")
-class CourseController(private val courseService: CourseService) {
+class CourseController(private val courseService: CourseService, private val courseTranslationService: CourseTranslationService) {
 
     @GetMapping("/{courseCode}")
     fun getCourse(@PathVariable courseCode: String): ResponseEntity<Course> =
             courseService.getCourse(courseCode).toResponseEntity()
+
+    @GetMapping("/translation/lang/{languageCode}")
+    fun getCourseTranslationByLangCode(@PathVariable languageCode: String): ResponseEntity<List<CourseTranslation>> =
+            courseTranslationService.getCourse(languageCode.toLanguageCode()).toResponseEntity()
+
+    @GetMapping("/translation")
+    fun getCourseTranslation(@RequestBody course: Course): ResponseEntity<List<CourseTranslation>> =
+            courseTranslationService.getCourse(course).toResponseEntity()
 
     @PostMapping("/add")
     fun postCourse(@RequestBody course: Course): ResponseEntity<Course> =
