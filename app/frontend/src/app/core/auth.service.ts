@@ -11,18 +11,22 @@ import {
 
 import { Observable, of } from "rxjs";
 import { switchMap, map } from "rxjs/operators";
-import { User } from 'src/shared/models/User';
+import { User } from "src/shared/models/User";
+import { Lecturer } from "src/shared/models/Lecturer";
+import { ApiService } from "./api.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class AuthService {
   user$: Observable<User>;
+  currentLecturer$: Observable<Lecturer>;
 
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private apiService: ApiService
   ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
@@ -33,17 +37,25 @@ export class AuthService {
         }
       })
     );
+
+    this.user$.subscribe(user => {
+      if (user && user.role == "lecturer") {
+        this.currentLecturer$ = this.apiService.get<Lecturer>(
+          `lecturer/id/${user.databaseId}`
+        );
+      }
+    });
   }
 
-
-  async emailPasswordSignIn(email: string, password: string){
-    const credential = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  async emailPasswordSignIn(email: string, password: string) {
+    const credential = await this.afAuth.auth.signInWithEmailAndPassword(
+      email,
+      password
+    );
   }
 
-  async signOut(){
+  async signOut() {
     await this.afAuth.auth.signOut();
-    return this.router.navigate(['/'])
+    return this.router.navigate(["/"]);
   }
-
-
 }

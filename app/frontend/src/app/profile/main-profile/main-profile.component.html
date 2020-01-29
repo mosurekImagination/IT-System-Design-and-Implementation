@@ -1,0 +1,82 @@
+<div class="container-fuild" id="profile_container">
+  <div class="row">
+    <div class="col-sm-4" id="profile_section">
+      <div class="row">
+        <div class="col-sm-12">
+          <img src="assets/avatar.png" alt="placeholder" id="avatar" />
+        </div>
+        <div class="col-sm-12">
+          <div class="row" class="preferences_row" id="preferences_header">
+            Preferencje:
+          </div>
+          <section *ngIf="auth.currentLecturer$ | async as lecturer">
+            <div
+              class="row"
+              class="preferences_row"
+              *ngFor="let preference of lecturer.knowledgeArea"
+            >
+              {{ knowledgeArea.name }}
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4" id="data_section">
+      <section id="datas" *ngIf="auth.currentLecturer$ | async as lecturer">
+        <div class="row data_row">
+          <div class="col-sm-12 data_line">
+            <span id="data_name"
+              >{{ lecturer.name }} {{ lecturer.surname }}</span
+            >
+          </div>
+        </div>
+        <div class="row data_row">
+          <div class="col-sm-12 data_line">
+            <span id="data_title">{{ lecturer.title }}</span>
+          </div>
+        </div>
+      </section>
+    </div>
+    <div class="col-sm-4" id="options_section">
+      <div class="row option_row">
+        <div class="col-sm-12 option_column">
+          <button
+            mat-raised-button
+            class="option_button"
+            routerLink="/profile/entrustmentPropositions"
+          >
+            Propozycje powierzeń
+          </button>
+        </div>
+      </div>
+
+      <div class="row option_row">
+        <div class="col-sm-12 option_column">
+          <button mat-raised-button class="option_button" disabled>
+            Moje powierzenia
+          </button>
+        </div>
+      </div>
+
+      <div class="row option_row">
+        <div class="col-sm-12 option_column">
+          <button mat-raised-button class="option_button" disabled>
+            Edytuj moje dane
+          </button>
+        </div>
+      </div>
+
+      <div class="row option_row">
+        <div class="col-sm-12 option_column">
+          <button
+            mat-raised-button
+            class="option_button"
+            routerLink="/profile/editPreferences"
+          >
+            Edytuj moje preferencje
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

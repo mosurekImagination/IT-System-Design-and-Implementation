@@ -1,0 +1,52 @@
+#profile_container {
+  margin-top: 4vh;
+  margin-left: 4vw;
+  margin-right: 4vw;
+}
+
+#avatar {
+  float: right;
+  max-width: 50%;
+  height: auto;
+}
+
+#profile_section {
+}
+
+#options_section {
+}
+
+.option_row {
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  height: 10vh;
+}
+
+.option_button {
+  width: 100%;
+  height: 100%;
+}
+
+#data_section {
+  padding-top: 6vh;
+}
+
+#data_name {
+  font-size: 3rem;
+  margin-left: 6px;
+}
+
+#data_title {
+  font-size: 1.2rem;
+  margin-left: 8px;
+  font-style: italic;
+}
+
+#datas {
+  border-left: 1px dotted grey;
+}
+
+#preferences_header {
+  margin-top: 10%;
+  font-size: 3rem;
+}
