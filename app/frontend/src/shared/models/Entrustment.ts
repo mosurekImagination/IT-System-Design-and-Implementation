@@ -1,0 +1,18 @@
+import { Lecturer } from "./Lecturer";
+import { Course } from "./Course";
+
+export interface Entrustment {
+  id: number;
+  answer: string;
+  entrustmentStatus: string;
+  hours: number;
+  lecturers: Array<Lecturer>;
+  courseId: Array<Course>;
+}
+
+export enum EntrustmentStatus {
+  NEW,
+  REJECTED,
+  ACCEPTED,
+  PROPOSED
+}

@@ -21,6 +21,7 @@ import { ApiService } from "./api.service";
 export class AuthService {
   user$: Observable<User>;
   currentLecturer$: Observable<Lecturer>;
+  currentId: number;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -43,6 +44,7 @@ export class AuthService {
         this.currentLecturer$ = this.apiService.get<Lecturer>(
           `lecturer/id/${user.databaseId}`
         );
+        this.currentId = user.databaseId;
       }
     });
   }

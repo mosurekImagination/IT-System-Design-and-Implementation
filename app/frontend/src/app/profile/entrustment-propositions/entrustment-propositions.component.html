@@ -1,3 +1,60 @@
-<p>
-  entrustment-propositions works!
-</p>
+<section>
+  <div class="example-container mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+      <!-- kurs powierzany Column -->
+      <ng-container matColumnDef="col1">
+        <th mat-header-cell *matHeaderCellDef>Kurs powierzany</th>
+        <td mat-cell *matCellDef="let element">{{ element.courseName }}</td>
+      </ng-container>
+
+      <!-- forma Column -->
+      <ng-container matColumnDef="col2">
+        <th mat-header-cell *matHeaderCellDef>Forma powierzenia</th>
+        <td mat-cell *matCellDef="let element">{{ element.form }}</td>
+      </ng-container>
+
+      <!-- liczba grup Column -->
+      <ng-container matColumnDef="col3">
+        <th mat-header-cell *matHeaderCellDef>Liczba grup</th>
+        <td mat-cell *matCellDef="let element">{{ element.groups }}</td>
+      </ng-container>
+
+      <!-- godziny Column -->
+      <ng-container matColumnDef="col4">
+        <th mat-header-cell *matHeaderCellDef>Liczba godzin</th>
+        <td mat-cell *matCellDef="let element">{{ element.hours }}</td>
+      </ng-container>
+
+      <!-- decyzja Column -->
+      <ng-container matColumnDef="col5">
+        <th mat-header-cell *matHeaderCellDef>Decyzja</th>
+        <td mat-cell *matCellDef="let element" id="option_container">
+          <button
+            mat-raised-button
+            class="option_button"
+            (click)="acceptEntrustment(element.entrustmentId)"
+          >
+            +
+          </button>
+          <button
+            mat-raised-button
+            class="option_button"
+            (click)="rejectEntrustment(element.entrustmentId)"
+          >
+            -
+          </button>
+          <button
+            mat-raised-button
+            class="option_button"
+            (click)="entrustmentInfo(element.entrustmentId)"
+          >
+            i
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</section>
