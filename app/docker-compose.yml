@@ -19,7 +19,8 @@ services:
     ports:
       - 3306:3306
     restart: always
-    command: --innodb_use_native_aio=0
+    volumes:
+      - ./database/volume:/var/lib/mysql
     cap_add:
       - SYS_NICE
   backend:
