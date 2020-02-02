@@ -6,20 +6,24 @@ import { EntrustmentPropositionsComponent } from "./entrustment-propositions/ent
 import { EditPreferencesComponent } from "./edit-preferences/edit-preferences.component";
 import { RouterModule } from "@angular/router";
 import { EntrustmentDetailsComponent } from "./entrustment-details/entrustment-details.component";
+import { DialogComponent } from "./entrustment-details/dialog/dialog.component";
 
 @NgModule({
   declarations: [
     MainProfileComponent,
     EntrustmentPropositionsComponent,
     EditPreferencesComponent,
-    EntrustmentDetailsComponent
+    EntrustmentDetailsComponent,
+    DialogComponent
   ],
   imports: [CommonModule, MaterialModule, RouterModule],
   exports: [
     MainProfileComponent,
     EntrustmentPropositionsComponent,
     EditPreferencesComponent,
-    EntrustmentDetailsComponent
-  ]
+    EntrustmentDetailsComponent,
+    DialogComponent
+  ],
+  entryComponents: [DialogComponent]
 })
 export class ProfileModule {}

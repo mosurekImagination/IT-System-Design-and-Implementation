@@ -1,6 +1,7 @@
 #container {
   text-align: center;
   font-size: 1.6rem;
+  width: 95%;
 }
 
 #title {
@@ -16,7 +17,7 @@
 }
 
 #message_box {
-  width: 80%;
+  width: 100%;
   font-size: 0.8rem;
 }
 
@@ -39,6 +40,10 @@
   margin-bottom: 4vh;
 }
 
-.selected {
+.selectedyes {
   background-color: green;
+}
+
+.selectedno {
+  background-color: rgb(236, 74, 74);
 }
