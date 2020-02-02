@@ -7,6 +7,7 @@ import { EditPreferencesComponent } from "./edit-preferences/edit-preferences.co
 import { RouterModule } from "@angular/router";
 import { EntrustmentDetailsComponent } from "./entrustment-details/entrustment-details.component";
 import { DialogComponent } from "./entrustment-details/dialog/dialog.component";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,13 @@ import { DialogComponent } from "./entrustment-details/dialog/dialog.component";
     EntrustmentDetailsComponent,
     DialogComponent
   ],
-  imports: [CommonModule, MaterialModule, RouterModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
   exports: [
     MainProfileComponent,
     EntrustmentPropositionsComponent,
