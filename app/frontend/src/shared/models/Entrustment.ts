@@ -11,8 +11,8 @@ export interface Entrustment {
 }
 
 export enum EntrustmentStatus {
-  NEW,
-  REJECTED,
-  ACCEPTED,
-  PROPOSED
+  NEW = "Nowe",
+  REJECTED = "Odrzucone",
+  ACCEPTED = "Zaakceptowane",
+  PROPOSED = "Zaproponowane"
 }
