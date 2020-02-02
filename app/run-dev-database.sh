@@ -1,2 +1,2 @@
-docker-compose up -d mysql 
+docker-compose up --force-recreate mysql
 $SHELL 

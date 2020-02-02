@@ -22,10 +22,10 @@ class CourseController(private val courseService: CourseService, private val cou
     fun getCourseTranslationByLangCode(@PathVariable languageCode: String): ResponseEntity<List<CourseTranslation>> =
             courseTranslationService.getCourse(languageCode.toLanguageCode()).toResponseEntity()
 
-    @GetMapping("/translation")
-    fun getCourseTranslation(@RequestBody code: String): ResponseEntity<List<CourseTranslation>>? {
-        val course = courseService.getCourse(code)
-        return course?.let { courseTranslationService.getCourse(it).toResponseEntity() }
+    @GetMapping("/translation/{id}/{languageCode}")
+    fun getCourseTranslation(@PathVariable id: String, @PathVariable languageCode: String): ResponseEntity<CourseTranslation>? {
+        val course = courseService.getCourseById(id.toLong())
+        return course?.let { courseTranslationService.getCourse(course = it, languageCode = languageCode.toLanguageCode()).toResponseEntity() }
     }
 
     @PostMapping("/add")
