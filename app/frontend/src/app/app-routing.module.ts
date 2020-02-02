@@ -5,6 +5,8 @@ import { EditPreferencesComponent } from "./profile/edit-preferences/edit-prefer
 import { EntrustmentPropositionsComponent } from "./profile/entrustment-propositions/entrustment-propositions.component";
 import { EntrustmentDetailsComponent } from "./profile/entrustment-details/entrustment-details.component";
 import { RaportMainComponent } from "./raport/raport-main/raport-main.component";
+import { RaportNoLecturerComponent } from "./raport/raport-no-lecturer/raport-no-lecturer.component";
+import { CurrentEntrustmentsComponent } from "./raport/current-entrustments/current-entrustments.component";
 
 const routes: Routes = [
   {
@@ -24,7 +26,18 @@ const routes: Routes = [
   },
   {
     path: "raport",
-    component: RaportMainComponent
+    component: RaportMainComponent,
+    pathMatch: "full"
+  },
+  {
+    path: "raport/nolecturers",
+    component: RaportNoLecturerComponent,
+    pathMatch: "full"
+  },
+  {
+    path: "raport/currentEntrustments",
+    component: CurrentEntrustmentsComponent,
+    pathMatch: "full"
   },
   { path: "profile", component: MainProfileComponent }
 ];
