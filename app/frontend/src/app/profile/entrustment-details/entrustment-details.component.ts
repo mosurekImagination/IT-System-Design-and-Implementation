@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { MatDialog } from "@angular/material";
+import { DialogComponent } from "./dialog/dialog.component";
 
 @Component({
   selector: "app-entrustment-details",
@@ -7,7 +9,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./entrustment-details.component.scss"]
 })
 export class EntrustmentDetailsComponent implements OnInit {
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, public dialog: MatDialog) {}
 
   entrustmentId: number;
   message: string;
@@ -30,6 +32,9 @@ export class EntrustmentDetailsComponent implements OnInit {
 
   private finalAcceptClicked() {
     console.log(`Final accept clicked with decistion: ${this.optionSelected}`);
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: "1000px"
+    });
   }
 }
 

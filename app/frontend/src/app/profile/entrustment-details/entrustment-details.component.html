@@ -39,7 +39,7 @@
                   mat-raised-button
                   class="decision_button"
                   (click)="acceptClicked()"
-                  [ngClass]="{ selected: optionSelected == 2 }"
+                  [ngClass]="{ selectedyes: optionSelected == 2 }"
                 >
                   Zaakceptuj
                 </button>
@@ -49,7 +49,7 @@
                   mat-raised-button
                   class="decision_button"
                   (click)="rejectClicked()"
-                  [ngClass]="{ selected: optionSelected == 1 }"
+                  [ngClass]="{ selectedno: optionSelected == 1 }"
                 >
                   Odrzuć
                 </button>
