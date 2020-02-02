@@ -9,4 +9,6 @@ interface CourseTranslationRepository : JpaRepository<CourseTranslation, Long> {
     fun findCourseTranslationsByCourse(course: Course): List<CourseTranslation>?
 
     fun findCourseTranslationsByLanguageCode(languageCode: LanguageCode): List<CourseTranslation>?
+
+    fun findCourseTranslationByCourseAndLanguageCode(course: Course, languageCode: LanguageCode): CourseTranslation?
 }

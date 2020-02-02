@@ -13,4 +13,5 @@ class LecturerService(private val lecturerRepository: LecturerRepository) {
 
     fun saveLecturer(lecturer: Lecturer) = lecturerRepository.save(lecturer)
 
+    fun getAll() = lecturerRepository.findAll()
 }
