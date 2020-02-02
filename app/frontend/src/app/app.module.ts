@@ -12,7 +12,7 @@ import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireStorageModule } from "@angular/fire/storage";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MainProfileComponent } from "./profile/main-profile/main-profile.component";
 import { ProfileModule } from "./profile/profile.module";
 import { RaportModule } from "./raport/raport.module";
@@ -42,9 +42,11 @@ const firebaseConfig = {
     HttpClientModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     ProfileModule,
     RaportModule
   ],
+  exports: [ReactiveFormsModule],
   providers: [I18n],
   bootstrap: [AppComponent]
 })
