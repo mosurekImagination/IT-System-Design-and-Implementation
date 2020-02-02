@@ -22,6 +22,9 @@ class LecturerController(private val lecturerService: LecturerService) {
     fun postLecturer(@RequestBody lecturer: Lecturer): ResponseEntity<Lecturer> =
             lecturerService.saveLecturer(lecturer).toResponseEntity()
 
+    @GetMapping("/all")
+    fun getAllLecturers(): ResponseEntity<List<Lecturer>> = lecturerService.getAll().toResponseEntity()
+
     @PutMapping("/update")
     fun updateLecturer(@RequestBody lecturer: Lecturer): ResponseEntity<Lecturer>{
         val tempLecturer = lecturerService.getLecturerById(lecturer.id)

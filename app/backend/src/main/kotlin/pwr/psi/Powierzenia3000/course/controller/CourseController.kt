@@ -23,8 +23,10 @@ class CourseController(private val courseService: CourseService, private val cou
             courseTranslationService.getCourse(languageCode.toLanguageCode()).toResponseEntity()
 
     @GetMapping("/translation")
-    fun getCourseTranslation(@RequestBody course: Course): ResponseEntity<List<CourseTranslation>> =
-            courseTranslationService.getCourse(course).toResponseEntity()
+    fun getCourseTranslation(@RequestBody code: String): ResponseEntity<List<CourseTranslation>>? {
+        val course = courseService.getCourse(code)
+        return course?.let { courseTranslationService.getCourse(it).toResponseEntity() }
+    }
 
     @PostMapping("/add")
     fun postCourse(@RequestBody course: Course): ResponseEntity<Course> =
