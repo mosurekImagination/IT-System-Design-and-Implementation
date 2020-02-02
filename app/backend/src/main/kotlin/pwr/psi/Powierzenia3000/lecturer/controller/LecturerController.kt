@@ -1,6 +1,5 @@
 package pwr.psi.Powierzenia3000.lecturer.controller
 
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import pwr.psi.Powierzenia3000.shared.model.Lecturer
@@ -21,6 +20,12 @@ class LecturerController(private val lecturerService: LecturerService) {
 
     @PostMapping("/add")
     fun postLecturer(@RequestBody lecturer: Lecturer): ResponseEntity<Lecturer> =
-            lecturerService.postLecturer(lecturer).toResponseEntity()
+            lecturerService.saveLecturer(lecturer).toResponseEntity()
+
+    @PutMapping("/update")
+    fun updateLecturer(@RequestBody lecturer: Lecturer): ResponseEntity<Lecturer>{
+        val tempLecturer = lecturerService.getLecturerById(lecturer.id)
+        return tempLecturer?.copy(knowledgeArea = lecturer.knowledgeArea)?.let { lecturerService.saveLecturer(it) }.toResponseEntity()
+    }
 
 }

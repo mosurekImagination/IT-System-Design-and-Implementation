@@ -14,7 +14,7 @@ class UserController(private val userService: UserService) {
 
     @GetMapping("/{token}")
     fun getUserByToken(@PathVariable token: String): ResponseEntity<Any> =
-            userService.loadUserByUsername(token).toResponseEntity()
+            userService.getUserByToken(token).toResponseEntity()
 }
 
 

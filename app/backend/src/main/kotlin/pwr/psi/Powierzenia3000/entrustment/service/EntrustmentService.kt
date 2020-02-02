@@ -10,7 +10,7 @@ class EntrustmentService (private val entrustmentRepository: EntrustmentReposito
 
     fun findEntrustmentById(id:Long) = entrustmentRepository.findEntrustmentById(id)
 
-    fun findEntrustmentByStatus(status: EntrustmentStatus) = entrustmentRepository.findEntrustmentByEntrustmentStatus(status)
+    fun findEntrustmentByStatus(status: EntrustmentStatus) = entrustmentRepository.findEntrustmentsByEntrustmentStatus(status)
 
-    fun postEntrustment(entrustment: Entrustment) = entrustmentRepository.save(entrustment)
+    fun saveEntrustment(entrustment: Entrustment) = entrustmentRepository.save(entrustment)
 }

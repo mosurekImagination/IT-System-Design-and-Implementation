@@ -8,9 +8,9 @@ import pwr.psi.Powierzenia3000.lecturer.repository.KnowledgeAreaRepository
 @Service
 class KnowledgeAreaService(private val knowledgeAreaRepository: KnowledgeAreaRepository){
 
-    fun postKnowledgeArea(knowledgeArea: KnowledgeArea) = knowledgeAreaRepository.save(knowledgeArea)
+    fun saveKnowledgeArea(knowledgeArea: KnowledgeArea) = knowledgeAreaRepository.save(knowledgeArea)
 
     fun getKnowledgeAreaByName(name: String) = knowledgeAreaRepository.findKnowledgeAreaByName(name)
 
-    fun getKnowledgeAreaByLecturer(lecturer: Lecturer) = knowledgeAreaRepository.findKnowledgeAreaByLecturers(lecturer)
+    fun getKnowledgeAreaByLecturer(lecturer: Lecturer) = knowledgeAreaRepository.findKnowledgeAreasByLecturers(lecturer)
 }

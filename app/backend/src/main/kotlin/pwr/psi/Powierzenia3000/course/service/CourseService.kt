@@ -9,5 +9,5 @@ class CourseService(private val courseRepository: CourseRepository) {
 
     fun getCourse(code: String) = courseRepository.findCourseByCode(code)
 
-    fun postCourse(course: Course) = courseRepository.save(course)
+    fun saveCourse(course: Course) = courseRepository.save(course)
 }

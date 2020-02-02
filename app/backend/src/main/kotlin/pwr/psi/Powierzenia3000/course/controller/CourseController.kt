@@ -1,6 +1,5 @@
 package pwr.psi.Powierzenia3000.course.controller
 
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import pwr.psi.Powierzenia3000.course.service.CourseService
@@ -29,6 +28,6 @@ class CourseController(private val courseService: CourseService, private val cou
 
     @PostMapping("/add")
     fun postCourse(@RequestBody course: Course): ResponseEntity<Course> =
-            courseService.postCourse(course).toResponseEntity()
+            courseService.saveCourse(course).toResponseEntity()
 
 }

@@ -7,6 +7,6 @@ import pwr.psi.Powierzenia3000.shared.model.User
 @Service
 class UserService(private val userRepository: UserRepository)  {
 
-    fun loadUserByUsername(token: String): User? =
+    fun getUserByToken(token: String): User? =
             userRepository.findUserByToken(token)
 }

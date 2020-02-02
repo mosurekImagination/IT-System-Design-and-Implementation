@@ -11,6 +11,6 @@ class LecturerService(private val lecturerRepository: LecturerRepository) {
 
     fun getLecturerBySurname(surname: String): Lecturer? = lecturerRepository.findLecturerBySurname(surname)
 
-    fun postLecturer(lecturer: Lecturer) = lecturerRepository.save(lecturer)
+    fun saveLecturer(lecturer: Lecturer) = lecturerRepository.save(lecturer)
 
 }

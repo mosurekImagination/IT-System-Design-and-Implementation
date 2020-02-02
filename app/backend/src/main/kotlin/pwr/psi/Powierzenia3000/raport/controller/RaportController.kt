@@ -16,8 +16,8 @@ class RaportController(private val raportService: RaportService) {
     fun getFreeEntrustments() =
             raportService.getFreeEntrustments().toResponseEntity()
 
-    @GetMapping("/list/{lecturerSurname}")
-    fun getLecturerEntrustments(@PathVariable lecturerSurname: String) =
-            raportService.getLecturerEntrustments(lecturerSurname).toResponseEntity()
+    @GetMapping("/list/{id}")
+    fun getLecturerEntrustments(@PathVariable id: String) =
+            raportService.getLecturerEntrustments(id).toResponseEntity()
 
 }

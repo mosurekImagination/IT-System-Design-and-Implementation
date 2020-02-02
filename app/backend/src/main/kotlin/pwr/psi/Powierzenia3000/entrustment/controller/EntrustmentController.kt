@@ -16,10 +16,10 @@ class EntrustmentController(private val entrustmentService: EntrustmentService) 
             entrustmentService.findEntrustmentById(id.toLong()).toResponseEntity()
 
     @GetMapping("/status/{status}")
-    fun getEntrustmentByStatus(@PathVariable status: String): ResponseEntity<Entrustment> =
+    fun getEntrustmentByStatus(@PathVariable status: String): ResponseEntity<List<Entrustment>> =
             entrustmentService.findEntrustmentByStatus(status.toEntrustmentStatus()).toResponseEntity()
 
     @PostMapping("/add")
     fun postEntrustment(@RequestBody entrustment: Entrustment): ResponseEntity<Entrustment> =
-            entrustmentService.postEntrustment(entrustment).toResponseEntity()
+            entrustmentService.saveEntrustment(entrustment).toResponseEntity()
 }
