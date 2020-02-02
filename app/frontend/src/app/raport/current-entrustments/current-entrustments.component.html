@@ -1,3 +1,54 @@
-<p>
-  current-entrustments works!
-</p>
+<div class="container-fluid">
+  <div class="row" id="title">
+    <div class="col-sm-10">
+      <h1>
+        Aktualne powierzenia
+      </h1>
+    </div>
+    <div class="col-sm-2">
+      <button mat-raised-button id="generate_button">Generuj raport</button>
+    </div>
+  </div>
+  <div class="row" id="table_space">
+    <div class="col-sm-12">
+      <div class="example-container mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+          <!-- col1 -->
+          <ng-container matColumnDef="col1">
+            <th mat-header-cell *matHeaderCellDef>Nazwa kursu</th>
+            <td mat-cell *matCellDef="let element">{{ element.courseName }}</td>
+          </ng-container>
+
+          <!-- col2 -->
+          <ng-container matColumnDef="col2">
+            <th mat-header-cell *matHeaderCellDef>Forma</th>
+            <td mat-cell *matCellDef="let element">{{ element.form }}</td>
+          </ng-container>
+
+          <!-- col3 -->
+          <ng-container matColumnDef="col3">
+            <th mat-header-cell *matHeaderCellDef>Godziny</th>
+            <td mat-cell *matCellDef="let element">{{ element.hours }}</td>
+          </ng-container>
+
+          <!-- col4 -->
+          <ng-container matColumnDef="col4">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+          </ng-container>
+
+          <!-- col5 -->
+          <ng-container matColumnDef="col5">
+            <th mat-header-cell *matHeaderCellDef>Wiadomość</th>
+            <td mat-cell *matCellDef="let element">{{ element.message }}</td>
+          </ng-container>
+          <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns; sticky: true"
+          ></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
