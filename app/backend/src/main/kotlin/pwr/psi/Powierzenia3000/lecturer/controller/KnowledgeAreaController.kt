@@ -16,10 +16,10 @@ class KnowledgeAreaController (private val knowledgeAreaService: KnowledgeAreaSe
             knowledgeAreaService.getKnowledgeAreaByName(name).toResponseEntity()
 
     @GetMapping("/lecturer/{lecturer}")
-    fun getKnowledgeByLecturer(@PathVariable lecturer: Lecturer): ResponseEntity<KnowledgeArea> =
+    fun getKnowledgeByLecturer(@PathVariable lecturer: Lecturer): ResponseEntity<List<KnowledgeArea>> =
             knowledgeAreaService.getKnowledgeAreaByLecturer(lecturer).toResponseEntity()
 
     @PostMapping("/add")
     fun postKnowdledge(@RequestBody knowledgeArea: KnowledgeArea): ResponseEntity<KnowledgeArea> =
-            knowledgeAreaService.postKnowledgeArea(knowledgeArea).toResponseEntity()
+            knowledgeAreaService.saveKnowledgeArea(knowledgeArea).toResponseEntity()
 }

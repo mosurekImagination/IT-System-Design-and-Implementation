@@ -8,10 +8,10 @@ import pwr.psi.Powierzenia3000.shared.model.Entrustment
 @Service
 class RaportService(private val entrustmentRepository: EntrustmentRepository, private val lecturerRepository: LecturerRepository) {
 
-    fun getFreeEntrustments() = entrustmentRepository.findEntrustmentByLecturerIsNull()
+    fun getFreeEntrustments() = entrustmentRepository.findEntrustmentsByLecturerIsNull()
 
-    fun getLecturerEntrustments(lecturerName: String): List<Entrustment>? {
-        val lecturer = lecturerRepository.findLecturerBySurname(lecturerName) ?: return null
+    fun getLecturerEntrustments(lecturerId: String): List<Entrustment>? {
+        val lecturer = lecturerRepository.findLecturerById(lecturerId.toLong()) ?: return null
         return entrustmentRepository.findEntrustmentByLecturer(lecturer)
     }
 }

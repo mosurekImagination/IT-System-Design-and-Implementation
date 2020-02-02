@@ -11,7 +11,7 @@ data class CourseTranslation(
         val id: Long = 0,
         @ManyToOne
         val course: Course? = null,
-        val languageCode: LanguageCode,
+        val languageCode: LanguageCode = LanguageCode.PL,
         val name: String = ""
 )
 
@@ -19,3 +19,9 @@ data class CourseTranslation(
 enum class LanguageCode {
     PL, EN
 }
+
+fun String.toLanguageCode() =
+    when(this){
+        "EN" -> LanguageCode.EN
+        else -> LanguageCode.PL
+    }

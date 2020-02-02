@@ -7,5 +7,5 @@ import pwr.psi.Powierzenia3000.shared.model.Lecturer
 interface KnowledgeAreaRepository : JpaRepository<KnowledgeArea, Long> {
     fun findKnowledgeAreaByName(name: String): KnowledgeArea?
 
-    fun findKnowledgeAreaByLecturers(lecturer: Lecturer): KnowledgeArea?
+    fun findKnowledgeAreasByLecturers(lecturer: Lecturer): List<KnowledgeArea>?
 }
