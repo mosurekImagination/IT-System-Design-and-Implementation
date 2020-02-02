@@ -5,4 +5,6 @@ import pwr.psi.Powierzenia3000.shared.model.Course
 
 interface CourseRepository : JpaRepository<Course, Long> {
     fun findCourseByCode(code: String): Course?
+
+    fun findCourseById(id:Long):Course?
 }

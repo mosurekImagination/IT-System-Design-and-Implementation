@@ -10,4 +10,6 @@ class CourseTranslationService(private val courseTranslationRepository: CourseTr
     fun getCourse(course: Course) = courseTranslationRepository.findCourseTranslationsByCourse(course)
 
     fun getCourse(languageCode: LanguageCode) = courseTranslationRepository.findCourseTranslationsByLanguageCode(languageCode)
+
+    fun getCourse(course: Course, languageCode: LanguageCode) = courseTranslationRepository.findCourseTranslationByCourseAndLanguageCode(course, languageCode)
 }
