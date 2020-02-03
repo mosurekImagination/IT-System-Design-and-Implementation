@@ -5,9 +5,9 @@ export interface Course {
 }
 
 export enum CourseType {
-  PROJEKT,
-  LABORATORIA,
-  CWICZENIA,
-  WYKLAD,
-  PRAKTYKI
+  PROJEKT = "Projekt",
+  LABORATORIA = "Laboriatoria",
+  CWICZENIA = "Ćwiczenia",
+  WYKLAD = "Wykład",
+  PRAKTYKI = "Praktyki"
 }

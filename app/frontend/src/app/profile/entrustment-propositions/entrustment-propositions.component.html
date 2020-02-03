@@ -13,20 +13,14 @@
         <td mat-cell *matCellDef="let element">{{ element.form }}</td>
       </ng-container>
 
-      <!-- liczba grup Column -->
-      <ng-container matColumnDef="col3">
-        <th mat-header-cell *matHeaderCellDef>Liczba grup</th>
-        <td mat-cell *matCellDef="let element">{{ element.groups }}</td>
-      </ng-container>
-
       <!-- godziny Column -->
-      <ng-container matColumnDef="col4">
+      <ng-container matColumnDef="col3">
         <th mat-header-cell *matHeaderCellDef>Liczba godzin</th>
         <td mat-cell *matCellDef="let element">{{ element.hours }}</td>
       </ng-container>
 
       <!-- decyzja Column -->
-      <ng-container matColumnDef="col5">
+      <ng-container matColumnDef="col4">
         <th mat-header-cell *matHeaderCellDef>Decyzja</th>
         <td mat-cell *matCellDef="let element" id="option_container">
           <button

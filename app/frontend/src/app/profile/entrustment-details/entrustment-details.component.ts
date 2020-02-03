@@ -2,6 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MatDialog } from "@angular/material";
 import { DialogComponent } from "./dialog/dialog.component";
+import { EntrustmentDetailsPresenter } from "src/shared/presenter-models/EntrustmentDetailsPresenter";
+import { ApiService } from "src/app/core/api.service";
+import { Entrustment } from "src/shared/models/Entrustment";
+import { map } from "rxjs/operators";
+import { EntrustmentPresenter } from "src/shared/presenter-models/EntrustmentPresenter";
 
 @Component({
   selector: "app-entrustment-details",
@@ -9,7 +14,11 @@ import { DialogComponent } from "./dialog/dialog.component";
   styleUrls: ["./entrustment-details.component.scss"]
 })
 export class EntrustmentDetailsComponent implements OnInit {
-  constructor(private route: ActivatedRoute, public dialog: MatDialog) {}
+  constructor(
+    private route: ActivatedRoute,
+    public dialog: MatDialog,
+    private apiService: ApiService
+  ) {}
 
   entrustmentId: number;
   message: string;
@@ -19,7 +28,23 @@ export class EntrustmentDetailsComponent implements OnInit {
 
   ngOnInit() {
     this.entrustmentId = parseInt(this.route.snapshot.paramMap.get("id"));
-    this.entrustment = tempData;
+    this.apiService
+      .get<Entrustment>(`entrustment/id/${this.entrustmentId}`)
+      .pipe(
+        map((ent: Entrustment) => {
+          return {
+            courseName: ent.courseId.code,
+            code: ent.courseId.code,
+            form: ent.courseId.courseType,
+            semester: 2,
+            year: 1
+          } as EntrustmentDetailsPresenter;
+        })
+      )
+      .subscribe(result => {
+        console.log(result);
+        this.entrustment = result;
+      });
   }
 
   private acceptClicked() {
@@ -36,20 +61,4 @@ export class EntrustmentDetailsComponent implements OnInit {
       width: "1000px"
     });
   }
-}
-
-const tempData: EntrustmentDetailsPresenter = {
-  courseName: "Podstawy baz danych",
-  code: "ABC-123",
-  form: "Ćwiczenia",
-  year: "II",
-  semester: 4
-} as EntrustmentDetailsPresenter;
-
-export interface EntrustmentDetailsPresenter {
-  courseName: string;
-  code: string;
-  form: string;
-  year: string;
-  semester: number;
 }

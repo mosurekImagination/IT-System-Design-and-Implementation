@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/core/auth.service";
 import { Router } from "@angular/router";
 import { NoLecturerPresenter } from "src/shared/presenter-models/NoLecturerPresenter";
+import { ApiService } from "src/app/core/api.service";
 
 @Component({
   selector: "app-raport-no-lecturer",
@@ -20,7 +21,7 @@ export class RaportNoLecturerComponent implements OnInit {
     "col8"
   ];
   dataSource = tempData;
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
   ngOnInit() {}
 }
