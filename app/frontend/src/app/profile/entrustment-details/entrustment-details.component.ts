@@ -1,11 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { MatDialog } from "@angular/material";
-import { DialogComponent } from "./dialog/dialog.component";
+import { DialogComponent, DialogData } from "./dialog/dialog.component";
 import { EntrustmentDetailsPresenter } from "src/shared/presenter-models/EntrustmentDetailsPresenter";
 import { ApiService } from "src/app/core/api.service";
-import { Entrustment } from "src/shared/models/Entrustment";
-import { map } from "rxjs/operators";
+import {
+  Entrustment,
+  mapEntrustmentStatus,
+  EntrustmentStatus
+} from "src/shared/models/Entrustment";
+import { map, tap } from "rxjs/operators";
 import { EntrustmentPresenter } from "src/shared/presenter-models/EntrustmentPresenter";
 import { environment } from "src/environments/environment";
 
@@ -24,6 +28,7 @@ export class EntrustmentDetailsComponent implements OnInit {
   entrustmentId: number;
   message: string;
   entrustment: EntrustmentDetailsPresenter = null;
+  entrustmentReal: Entrustment;
 
   optionSelected: number = 0; // 0 - not selected / 1 - reject / 2 - accept
 
@@ -32,6 +37,7 @@ export class EntrustmentDetailsComponent implements OnInit {
     this.apiService
       .get<Entrustment>(`entrustment/id/${this.entrustmentId}`)
       .pipe(
+        tap(ent => (this.entrustmentReal = ent)),
         map((ent: Entrustment) => {
           return {
             courseName: ent.courseId.translation.find(
@@ -58,8 +64,15 @@ export class EntrustmentDetailsComponent implements OnInit {
 
   private finalAcceptClicked() {
     console.log(`Final accept clicked with decistion: ${this.optionSelected}`);
+    const newStatus =
+      this.optionSelected == 2
+        ? EntrustmentStatus.ACCEPTED
+        : EntrustmentStatus.REJECTED;
+    this.entrustmentReal.entrustmentStatus = mapEntrustmentStatus(newStatus);
+
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: "1000px"
+      width: "1000px",
+      data: { entrustment: this.entrustmentReal } as DialogData
     });
   }
 }
