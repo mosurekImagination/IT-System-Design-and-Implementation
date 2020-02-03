@@ -13,8 +13,8 @@ import { Router } from "@angular/router";
   styleUrls: ["./entrustment-propositions.component.scss"]
 })
 export class EntrustmentPropositionsComponent implements OnInit {
-  displayedColumns = ["col1", "col2", "col3", "col4", "col5"];
-  dataSource = tempData;
+  displayedColumns = ["col1", "col2", "col3", "col4"];
+  dataSource: EntrustmentPresenter[];
   constructor(
     private apiService: ApiService,
     private auth: AuthService,
@@ -22,8 +22,26 @@ export class EntrustmentPropositionsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // TODO: Pobierz mi wszystkie entrustment dla danego lecturer ID
-    // zmapuj wszystko na EntrustmentPresenter
+    this.apiService
+      .get<Entrustment[]>(`raport/list/${this.auth.currentId}`)
+      .pipe(
+        map((entrustments: Entrustment[]) => {
+          return entrustments.map(
+            (ent: Entrustment) =>
+              ({
+                courseName: ent.courseId.code,
+                form: ent.courseId.courseType,
+                hours: ent.hours,
+                entrustmentId: ent.id,
+                status: ent.entrustmentStatus
+              } as EntrustmentPresenter)
+          );
+        })
+      )
+      .subscribe(result => {
+        console.log(result);
+        this.dataSource = result;
+      });
   }
 
   private acceptEntrustment(entrustmentId: number) {
