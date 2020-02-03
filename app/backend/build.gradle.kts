@@ -30,6 +30,7 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation(group = "com.h2database", name = "h2", version = "1.4.200")
     testImplementation(group = "org.mockito", name = "mockito-core", version = "3.2.4")
+    testImplementation(group = "io.rest-assured", name= "spring-mock-mvc", version= "3.0.0")
     implementation(group = "mysql", name = "mysql-connector-java", version = "8.0.18")
     implementation(group = "log4j", name = "log4j", version = "1.2.17")
 
