@@ -22,6 +22,9 @@ class KnowledgeAreaController (private val knowledgeAreaService: KnowledgeAreaSe
         return lecturer?.let { knowledgeAreaService.getKnowledgeAreaByLecturer(it).toResponseEntity() }
     }
 
+    @GetMapping("/all")
+    fun getAllKnowledge():ResponseEntity<List<KnowledgeArea>> = knowledgeAreaService.getAll().toResponseEntity()
+
     @PostMapping("/add")
     fun postKnowdledge(@RequestBody knowledgeArea: KnowledgeArea): ResponseEntity<KnowledgeArea> =
             knowledgeAreaService.saveKnowledgeArea(knowledgeArea).toResponseEntity()

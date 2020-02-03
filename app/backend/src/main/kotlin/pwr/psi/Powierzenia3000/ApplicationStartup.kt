@@ -62,6 +62,13 @@ class ApplicationStartup(
                             knowledgeArea = savedAreas.toSet())
             )
             lecturerRepository.saveAll(lecturers)
+            savedAreas[0].copy(lecturers = setOf(lecturers[0], lecturers[1])).let { knowledgeAreaRepository.save(it) }
+            savedAreas[1].copy(lecturers = setOf(lecturers[2])).let { knowledgeAreaRepository.save(it) }
+            savedAreas[2].copy(lecturers = setOf(lecturers[2], lecturers[1])).let { knowledgeAreaRepository.save(it) }
+            savedAreas[3].copy(lecturers = setOf(lecturers[0])).let { knowledgeAreaRepository.save(it) }
+            savedAreas[4].copy(lecturers = setOf(lecturers[1])).let { knowledgeAreaRepository.save(it) }
+            savedAreas[5].copy(lecturers = setOf(lecturers[2])).let { knowledgeAreaRepository.save(it) }
+
             logger.info("saving lecturers")
 
             val courses = arrayListOf(
