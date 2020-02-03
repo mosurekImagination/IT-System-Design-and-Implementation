@@ -44,5 +44,9 @@
     Zatwierdź
   </button>
 
-  <mat-progress-bar mode="indeterminate" id="progress"></mat-progress-bar>
+  <mat-progress-bar
+    *ngIf="progressVisible"
+    mode="indeterminate"
+    id="progress"
+  ></mat-progress-bar>
 </div>
