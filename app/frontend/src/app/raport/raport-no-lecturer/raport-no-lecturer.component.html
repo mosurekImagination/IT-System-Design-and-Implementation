@@ -37,30 +37,12 @@
             <td mat-cell *matCellDef="let element">{{ element.hours }}</td>
           </ng-container>
 
-          <!-- col5 -->
-          <ng-container matColumnDef="col5">
-            <th mat-header-cell *matHeaderCellDef>Rok</th>
-            <td mat-cell *matCellDef="let element">{{ element.year }}</td>
-          </ng-container>
-
-          <!-- col6 -->
-          <ng-container matColumnDef="col6">
-            <th mat-header-cell *matHeaderCellDef>Semestr</th>
-            <td mat-cell *matCellDef="let element">{{ element.semester }}</td>
-          </ng-container>
-
           <!-- col7 -->
-          <ng-container matColumnDef="col7">
+          <ng-container matColumnDef="col5">
             <th mat-header-cell *matHeaderCellDef>Obszar wiedzy</th>
             <td mat-cell *matCellDef="let element">
               {{ element.knowledgeArea }}
             </td>
-          </ng-container>
-
-          <!-- col8 -->
-          <ng-container matColumnDef="col8">
-            <th mat-header-cell *matHeaderCellDef>Do obsadzenia</th>
-            <td mat-cell *matCellDef="let element">{{ element.leftToGive }}</td>
           </ng-container>
 
           <tr
