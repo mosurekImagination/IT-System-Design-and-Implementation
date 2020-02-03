@@ -1,2 +1,4 @@
-docker-compose up --force-recreate --build    
+docker-compose down
+docker-compose build --no-cache
+docker-compose up    
 $SHELL 
