@@ -16,4 +16,4 @@ RUN npm install
 COPY . .
 
 # run tests
-RUN ng test --watch=false
+#RUN ng test --watch=false
