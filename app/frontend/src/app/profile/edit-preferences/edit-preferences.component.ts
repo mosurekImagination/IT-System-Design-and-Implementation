@@ -48,7 +48,13 @@ export class EditPreferencesComponent implements OnInit {
     private apiService: ApiService,
     private auth: AuthService,
     private snackBar: MatSnackBar
-  ) {}
+  ) {
+    this.filteredKAs = this.knowledgeAreasCtrl.valueChanges.pipe(
+      map((fruit: string | null) =>
+        fruit ? this._filter(fruit) : this.allKnowledgeAreas.slice()
+      )
+    );
+  }
 
   ngOnInit() {
     this.apiService.get<KnowledgeArea[]>(`knowledge/all`).subscribe(allKAs => {
@@ -57,26 +63,23 @@ export class EditPreferencesComponent implements OnInit {
       this.allKnowledgeAreas = allKAs.map(ka => ka.name);
     });
 
-    this.apiService
-      .get<KnowledgeArea[]>(`knowledge/lecturer/${this.auth.currentId}`)
-      .subscribe(currentKAs => {
-        console.log(currentKAs);
-        this.startCurrentKA = currentKAs;
-        this.currentKnowledgeAreas = currentKAs.map(ka => ka.name);
-        this.selectedArray = currentKAs;
-        this.filterAllAreas(this.currentKnowledgeAreas);
-      });
+    // this.apiService
+    //   .get<KnowledgeArea[]>(`knowledge/lecturer/${this.auth.currentId}`)
+    this.auth.currentLecturer$.subscribe(lecturer => {
+      console.log(lecturer.knowledgeArea);
+      this.startCurrentKA = lecturer.knowledgeArea;
+      this.currentKnowledgeAreas = lecturer.knowledgeArea.map(ka => ka.name);
+      this.selectedArray = lecturer.knowledgeArea;
+      this.filterAllAreas(this.currentKnowledgeAreas);
+    });
 
-    this.filteredKAs = this.knowledgeAreasCtrl.valueChanges.pipe(
-      startWith(null),
-      map((fruit: string | null) =>
-        fruit ? this._filter(fruit) : this.allKnowledgeAreas.slice()
-      )
-    );
+    this.knowledgeAreasCtrl.setValue(null);
   }
 
   private filterAllAreas(currentAreas: string[]) {
-    this.allKnowledgeAreas.filter(ka => !currentAreas.some(x => x == ka));
+    this.allKnowledgeAreas = this.allKnowledgeAreas.filter(
+      ka => !currentAreas.find(x => x == ka)
+    );
   }
 
   add(event: MatChipInputEvent): void {
@@ -100,6 +103,7 @@ export class EditPreferencesComponent implements OnInit {
 
     this.knowledgeAreasCtrl.setValue(null);
     this.changesMade = true;
+    this.filterAllAreas(this.currentKnowledgeAreas);
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
@@ -113,6 +117,7 @@ export class EditPreferencesComponent implements OnInit {
     this.knowledgeAreasCtrl.setValue(null);
 
     this.changesMade = true;
+    this.filterAllAreas(this.currentKnowledgeAreas);
   }
 
   private addToSelectedArray(selected: string) {

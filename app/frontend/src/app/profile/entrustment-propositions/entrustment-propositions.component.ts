@@ -107,22 +107,3 @@ export class EntrustmentPropositionsComponent implements OnInit {
     // API Update call
   }
 }
-
-const tempData: EntrustmentPresenter[] = [
-  {
-    entrustmentId: 1,
-    courseName: "Podstawy baz danych",
-    form: "Ćwiczenia",
-    groups: 1,
-    hours: 30,
-    status: EntrustmentStatus.NEW
-  } as EntrustmentPresenter,
-  {
-    entrustmentId: 2,
-    courseName: "Podstawy baz danych",
-    form: "Wykład",
-    groups: 1,
-    hours: 15,
-    status: EntrustmentStatus.PROPOSED
-  } as EntrustmentPresenter
-];

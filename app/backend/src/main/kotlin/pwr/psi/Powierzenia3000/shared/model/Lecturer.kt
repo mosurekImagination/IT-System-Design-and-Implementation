@@ -11,7 +11,7 @@ data class Lecturer(
         val title: Title = Title.INŻYNIER,
         val pesel: Long = 0,
 
-        @ManyToMany(mappedBy = "lecturers")
+        @ManyToMany()
         val knowledgeArea: Set<KnowledgeArea> = setOf()
 )
 
