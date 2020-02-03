@@ -10,6 +10,9 @@ import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { KnowledgeAreaPresenter } from "src/shared/presenter-models/KnowledgeAreaPresenter";
 import { Router } from "@angular/router";
+import { ApiService } from "src/app/core/api.service";
+import { KnowledgeArea } from "src/shared/models/KnowledgeArea";
+import { AuthService } from "src/app/core/auth.service";
 
 @Component({
   selector: "app-edit-preferences",
@@ -24,18 +27,41 @@ export class EditPreferencesComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   knowledgeAreasCtrl = new FormControl();
   filteredKAs: Observable<string[]>;
-  currentKnowledgeAreas: string[] = cka.map(cka => cka.name);
-  allKnowledgeAreas: string[] = dka.map(dka => dka.name);
-  selectedArray: KnowledgeAreaPresenter[] = cka;
-
-  everything: KnowledgeAreaPresenter[];
+  currentKnowledgeAreas: string[] = [];
+  allKnowledgeAreas: string[] = [];
+  selectedArray: KnowledgeArea[];
 
   changesMade: boolean = false;
+
+  startCurrentKA: KnowledgeArea[];
+  allKA: KnowledgeArea[];
 
   @ViewChild("kaInput") kaInput: ElementRef<HTMLInputElement>;
   @ViewChild("auto") matAutocomplete: MatAutocomplete;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private apiService: ApiService,
+    private auth: AuthService
+  ) {}
+
+  ngOnInit() {
+    this.apiService.get<KnowledgeArea[]>(`knowledge/all`).subscribe(allKAs => {
+      console.log(allKAs);
+      this.allKA = allKAs;
+      this.allKnowledgeAreas = allKAs.map(ka => ka.name);
+    });
+
+    this.apiService
+      .get<KnowledgeArea[]>(`knowledge/lecturer/${this.auth.currentId}`)
+      .subscribe(currentKAs => {
+        console.log(currentKAs);
+        this.startCurrentKA = currentKAs;
+        this.currentKnowledgeAreas = currentKAs.map(ka => ka.name);
+        this.selectedArray = currentKAs;
+        this.filterAllAreas(this.currentKnowledgeAreas);
+      });
+
     this.filteredKAs = this.knowledgeAreasCtrl.valueChanges.pipe(
       startWith(null),
       map((fruit: string | null) =>
@@ -44,8 +70,8 @@ export class EditPreferencesComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    this.everything = dka.concat(cka);
+  private filterAllAreas(currentAreas: string[]) {
+    this.allKnowledgeAreas.filter(ka => !currentAreas.some(x => x == ka));
   }
 
   add(event: MatChipInputEvent): void {
@@ -87,7 +113,7 @@ export class EditPreferencesComponent implements OnInit {
   private addToSelectedArray(selected: string) {
     console.log(selected);
 
-    let newKA = this.everything.find(item => item.name === selected);
+    let newKA = this.allKA.find(item => item.name === selected);
     this.selectedArray.push(newKA);
     console.log(this.selectedArray);
   }
@@ -108,57 +134,3 @@ export class EditPreferencesComponent implements OnInit {
     this.router.navigate(["/profile"]);
   }
 }
-
-const dka: KnowledgeAreaPresenter[] = [
-  {
-    id: 1,
-    name: "Bazy danych"
-  } as KnowledgeAreaPresenter,
-  {
-    id: 2,
-    name: "Sztuczna Inteligencja"
-  } as KnowledgeAreaPresenter,
-  {
-    id: 3,
-    name: "Projektowanie systemów"
-  } as KnowledgeAreaPresenter,
-  {
-    id: 4,
-    name: "Inteligencja biznesowa"
-  } as KnowledgeAreaPresenter,
-  {
-    id: 5,
-    name: "Wspomaganie oprogramowania"
-  } as KnowledgeAreaPresenter,
-  {
-    id: 6,
-    name: "Niesztuczna inteligencja"
-  } as KnowledgeAreaPresenter,
-  {
-    id: 7,
-    name: "Projektowanie Android"
-  } as KnowledgeAreaPresenter,
-  {
-    id: 8,
-    name: "Aplikacje Webowe"
-  } as KnowledgeAreaPresenter
-];
-
-const cka: KnowledgeAreaPresenter[] = [
-  {
-    id: 9,
-    name: "Mobilne sieci niewyobrażalne"
-  } as KnowledgeAreaPresenter,
-  {
-    id: 10,
-    name: "Ciekawe teorie kwantowe"
-  } as KnowledgeAreaPresenter,
-  {
-    id: 11,
-    name: "Ogólne wzory matematyczne"
-  } as KnowledgeAreaPresenter,
-  {
-    id: 12,
-    name: "Siedem grzegów głównych"
-  } as KnowledgeAreaPresenter
-];

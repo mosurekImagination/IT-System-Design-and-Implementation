@@ -6,6 +6,8 @@ import { ApiService } from "src/app/core/api.service";
 import { AuthService } from "src/app/core/auth.service";
 import { switchMap, map } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
+import { CourseType } from "src/shared/models/Course";
 
 @Component({
   selector: "app-entrustment-propositions",
@@ -29,8 +31,10 @@ export class EntrustmentPropositionsComponent implements OnInit {
           return entrustments.map(
             (ent: Entrustment) =>
               ({
-                courseName: ent.courseId.code,
-                form: ent.courseId.courseType,
+                courseName: ent.courseId.translation.find(
+                  trl => trl.languageCode == environment.language
+                ).name,
+                form: CourseType[ent.courseId.courseType],
                 hours: ent.hours,
                 entrustmentId: ent.id,
                 status: ent.entrustmentStatus
