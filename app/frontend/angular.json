@@ -63,7 +63,13 @@
               "outputPath": "dist/ng-powierzenia3000-en",
               "i18nFile": "src/i18n/messages.en.xlf",
               "i18nFormat": "xlf",
-              "i18nLocale": "en"
+              "i18nLocale": "en",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment-en.prod.ts"
+                }
+              ]
             }
           }
         },

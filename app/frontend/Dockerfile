@@ -16,11 +16,11 @@ RUN npm install
 COPY . .
 
 # run tests
-RUN ng test --watch=false
+#RUN ng test --watch=false
 # RUN ng e2e --port 4202
 
 # generate build
-RUN ng build-locale --output-path=dist --prod
+RUN npm run build-locale --output-path=dist --prod
 
 FROM nginx:alpine
 EXPOSE 3000

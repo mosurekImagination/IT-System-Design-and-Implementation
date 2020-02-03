@@ -2,11 +2,11 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="pl" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="some links" datatype="html">
-        <source>Here are some links to help you start: </source>
+      <trans-unit id="powierzenia3000" datatype="html">
+        <source>Powierzenia 3000</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
     </body>
