@@ -44,7 +44,7 @@ class LecturerServiceTest {
     fun shouldGetLecturerBySurname(){
         `when`(lecturerRepository.findLecturerBySurname(LECTURER_SURNAME)).thenReturn(mockLecturer)
 
-        assertEquals(mockLecturer,lecturerService.getLecturerById(LECTURER_ID))
+        assertEquals(mockLecturer,lecturerService.getLecturerBySurname(LECTURER_SURNAME))
     }
 
 
