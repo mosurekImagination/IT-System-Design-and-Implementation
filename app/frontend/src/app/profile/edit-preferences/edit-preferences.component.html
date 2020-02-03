@@ -1,3 +1,52 @@
-<p>
-  edit-preferences works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8 list_section">
+      <mat-form-field class="example-chip-list">
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip
+            *ngFor="let cka of currentKnowledgeAreas"
+            [selectable]="selectable"
+            [removable]="removable"
+            (removed)="remove(cka)"
+          >
+            {{ cka }}
+            <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+          </mat-chip>
+          <input
+            placeholder="Obszar zainteresowań"
+            #kaInput
+            [formControl]="knowledgeAreasCtrl"
+            [matAutocomplete]="auto"
+            [matChipInputFor]="chipList"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)"
+          />
+        </mat-chip-list>
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selected($event)"
+        >
+          <mat-option *ngFor="let fka of filteredKAs | async" [value]="fka">
+            {{ fka }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <button
+    mat-raised-button
+    id="accept_button"
+    [disabled]="!changesMade"
+    (click)="_accept()"
+  >
+    Zatwierdź
+  </button>
+
+  <mat-progress-bar
+    *ngIf="progressVisible"
+    mode="indeterminate"
+    id="progress"
+  ></mat-progress-bar>
+</div>

@@ -1,20 +1,21 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, TRANSLATIONS, LOCALE_ID } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CommonModule } from '@angular/common';
-import { CoreModule } from './core/core.module';
-import { HttpClientModule } from '@angular/common/http';
-import { I18n } from '@ngx-translate/i18n-polyfill';
-import { MaterialModule } from './core/material.module';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { FormsModule } from '@angular/forms';
-import { MainProfileComponent } from './profile/main-profile/main-profile.component';
-import { ProfileModule } from './profile/profile.module';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule, TRANSLATIONS, LOCALE_ID } from "@angular/core";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CommonModule } from "@angular/common";
+import { CoreModule } from "./core/core.module";
+import { HttpClientModule } from "@angular/common/http";
+import { I18n } from "@ngx-translate/i18n-polyfill";
+import { MaterialModule } from "./core/material.module";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireStorageModule } from "@angular/fire/storage";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MainProfileComponent } from "./profile/main-profile/main-profile.component";
+import { ProfileModule } from "./profile/profile.module";
+import { RaportModule } from "./raport/raport.module";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDRRv6g8E_s0qYPoLO53bozDl7HYfo27g8",
@@ -27,9 +28,7 @@ const firebaseConfig = {
 };
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -43,12 +42,12 @@ const firebaseConfig = {
     HttpClientModule,
     MaterialModule,
     FormsModule,
-    ProfileModule
+    ReactiveFormsModule,
+    ProfileModule,
+    RaportModule
   ],
-  providers: [
-    I18n
-  ],
+  exports: [ReactiveFormsModule],
+  providers: [I18n],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
-
+export class AppModule {}

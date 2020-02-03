@@ -97,7 +97,9 @@ class ApplicationStartup(
                             courseType = CourseType.LABORATORIA
                     )
             )
-            courseRepository.saveAll(courses)
+            courses.forEach {
+                courseRepository.save(it)
+            }
             logger.info("saving courses")
 
 

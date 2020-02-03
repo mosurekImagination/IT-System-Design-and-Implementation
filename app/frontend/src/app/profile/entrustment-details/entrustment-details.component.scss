@@ -1,0 +1,49 @@
+#container {
+  text-align: center;
+  font-size: 1.6rem;
+  width: 95%;
+}
+
+#title {
+  font-size: 2.2rem;
+}
+
+.details {
+  font-weight: bold;
+}
+
+.info_row {
+  margin-top: 16px;
+}
+
+#message_box {
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+#buttons_section {
+  margin-top: 8vh;
+}
+
+#final_accept_button {
+  width: 75%;
+  font-size: 1.5rem;
+  height: 4rem;
+}
+
+.decision_button {
+  font-size: 1.5rem;
+  width: 70%;
+}
+
+#decision_section {
+  margin-bottom: 4vh;
+}
+
+.selectedyes {
+  background-color: green;
+}
+
+.selectedno {
+  background-color: rgb(236, 74, 74);
+}

@@ -1,6 +1,40 @@
 <mat-toolbar>
   <mat-toolbar-row id="navigation">
+    <div id="logo" routerLink="/">
+      <span id="title" i18n="@@powierzenia3000">Powierzenia 3000</span>
+    </div>
+    <div id="logo" routerLink="/">
+      <span id="title" i18n="@@headerName">Powierzenia 3000</span>
+    </div>
     <div id="logo" routerLink="/"><span id="title" i18n="@@powierzenia3000">Powierzenia 3000</span></div>
+    <div id="logo" routerLink="/"><span id="title">Powierzenia 3000</span></div>
+    <section *ngIf="auth.user$ | async">
+      <button
+        mat-button
+        class="nav_option"
+        i18n="@@headerEntrustments"
+        disabled
+      >
+        Powierzenia
+      </button>
+      <button mat-button class="nav_option" i18n="@@headerLecturers" disabled>
+        Kadra
+      </button>
+      <button
+        mat-button
+        class="nav_option"
+        i18n="@@headerRaports"
+        routerLink="/raport"
+      >
+        Raportowanie
+      </button>
+      <button mat-button class="nav_option" i18n="@@headerDepartment" disabled>
+        Dziekanat
+      </button>
+      <button mat-button class="nav_option" i18n="@@headerEdukacja" disabled>
+        Edukacja
+      </button>
+    </section>
     <span class="login_space"></span>
     <div *ngIf="auth.user$ | async as user; else login">
       Witaj, {{ roleMap.roleFromResponse(user.role) }}, id:
@@ -70,4 +104,6 @@
   </form>
 </ng-template>
 
-<router-outlet></router-outlet>
+<section id="whole_container">
+  <router-outlet></router-outlet>
+</section>
