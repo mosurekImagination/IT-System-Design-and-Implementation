@@ -15,7 +15,7 @@
               class="preferences_row"
               *ngFor="let preference of lecturer.knowledgeArea"
             >
-              {{ knowledgeArea.name }}
+              <h3>-> {{ preference.name.toUpperCase() }}</h3>
             </div>
           </section>
         </div>

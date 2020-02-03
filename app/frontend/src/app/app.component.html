@@ -1,6 +1,8 @@
 <mat-toolbar>
   <mat-toolbar-row id="navigation">
-    <div id="logo" routerLink="/"><span id="title" i18n="@@powierzenia3000">Powierzenia 3000</span></div>
+    <div id="logo" routerLink="/">
+      <span id="title" i18n="@@powierzenia3000">Powierzenia 3000</span>
+    </div>
     <section *ngIf="auth.user$ | async">
       <button
         mat-button
