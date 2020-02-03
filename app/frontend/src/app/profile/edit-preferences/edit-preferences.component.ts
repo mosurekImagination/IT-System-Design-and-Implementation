@@ -136,7 +136,7 @@ export class EditPreferencesComponent implements OnInit {
     );
   }
 
-  private _accept() {
+  public _accept() {
     this.progressVisible = true;
     console.log("ACCEPT clicked");
     console.log(this.selectedArray);
