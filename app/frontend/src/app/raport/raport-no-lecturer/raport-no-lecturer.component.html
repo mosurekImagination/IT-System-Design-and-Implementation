@@ -37,14 +37,6 @@
             <td mat-cell *matCellDef="let element">{{ element.hours }}</td>
           </ng-container>
 
-          <!-- col7 -->
-          <ng-container matColumnDef="col5">
-            <th mat-header-cell *matHeaderCellDef>Obszar wiedzy</th>
-            <td mat-cell *matCellDef="let element">
-              {{ element.knowledgeArea }}
-            </td>
-          </ng-container>
-
           <tr
             mat-header-row
             *matHeaderRowDef="displayedColumns; sticky: true"

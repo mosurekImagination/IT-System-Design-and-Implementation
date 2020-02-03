@@ -3,5 +3,4 @@ export interface NoLecturerPresenter {
   courseName: string;
   code: string;
   hours: number;
-  knowledgeArea: string;
 }
