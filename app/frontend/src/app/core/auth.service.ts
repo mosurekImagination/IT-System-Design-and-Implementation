@@ -9,7 +9,7 @@ import {
   AngularFirestoreDocument
 } from "@angular/fire/firestore";
 
-import { Observable, of } from "rxjs";
+import { Observable, of, Subject, BehaviorSubject } from "rxjs";
 import { switchMap, map } from "rxjs/operators";
 import { User } from "src/shared/models/User";
 import { Lecturer } from "src/shared/models/Lecturer";
@@ -20,7 +20,8 @@ import { ApiService } from "./api.service";
 })
 export class AuthService {
   user$: Observable<User>;
-  currentLecturer$: Observable<Lecturer>;
+  // currentLecturerSubject: Subject<Lecturer>;
+  currentLecturer$: BehaviorSubject<Lecturer>;
   currentId: number;
 
   constructor(
@@ -29,6 +30,7 @@ export class AuthService {
     private router: Router,
     private apiService: ApiService
   ) {
+    this.currentLecturer$ = new BehaviorSubject<Lecturer>(null);
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -41,9 +43,9 @@ export class AuthService {
 
     this.user$.subscribe(user => {
       if (user && user.role == "lecturer") {
-        this.currentLecturer$ = this.apiService.get<Lecturer>(
-          `lecturer/id/${user.databaseId}`
-        );
+        this.apiService
+          .get<Lecturer>(`lecturer/id/${user.databaseId}`)
+          .subscribe(lecturer => this.currentLecturer$.next(lecturer));
         this.currentId = user.databaseId;
         console.log(`USER ID: ${this.currentId}`);
       }

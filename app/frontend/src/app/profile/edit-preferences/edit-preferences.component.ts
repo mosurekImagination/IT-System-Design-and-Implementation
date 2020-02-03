@@ -7,12 +7,14 @@ import {
 } from "@angular/material/autocomplete";
 import { MatChipInputEvent } from "@angular/material/chips";
 import { Observable } from "rxjs";
-import { map, startWith } from "rxjs/operators";
+import { map, startWith, switchMap, take } from "rxjs/operators";
 import { KnowledgeAreaPresenter } from "src/shared/presenter-models/KnowledgeAreaPresenter";
 import { Router } from "@angular/router";
 import { ApiService } from "src/app/core/api.service";
 import { KnowledgeArea } from "src/shared/models/KnowledgeArea";
 import { AuthService } from "src/app/core/auth.service";
+import { MatSnackBar } from "@angular/material";
+import { Lecturer } from "src/shared/models/Lecturer";
 
 @Component({
   selector: "app-edit-preferences",
@@ -31,6 +33,8 @@ export class EditPreferencesComponent implements OnInit {
   allKnowledgeAreas: string[] = [];
   selectedArray: KnowledgeArea[];
 
+  progressVisible: boolean = false;
+
   changesMade: boolean = false;
 
   startCurrentKA: KnowledgeArea[];
@@ -42,7 +46,8 @@ export class EditPreferencesComponent implements OnInit {
   constructor(
     private router: Router,
     private apiService: ApiService,
-    private auth: AuthService
+    private auth: AuthService,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
@@ -127,10 +132,35 @@ export class EditPreferencesComponent implements OnInit {
   }
 
   private _accept() {
+    this.progressVisible = true;
     console.log("ACCEPT clicked");
     console.log(this.selectedArray);
-    //map it and post it
-    //progress bar hidden then shown when posting
-    this.router.navigate(["/profile"]);
+
+    this.auth.currentLecturer$.pipe(take(1)).subscribe(user => {
+      console.log("start api call");
+
+      let toPut = user;
+      toPut.knowledgeArea = this.selectedArray;
+      console.log("toput");
+      console.log(toPut);
+      this.apiService
+        .put<Lecturer>(`lecturer/update`, toPut)
+        .pipe(take(1))
+        .subscribe(response => {
+          console.log("updated");
+          console.log(response);
+          console.log("Put success");
+          this.openSnackbar("Zaktualizowano!");
+          this.progressVisible = false;
+          this.router.navigate(["/profile"]);
+          this.auth.currentLecturer$.next(response);
+        });
+    });
+  }
+
+  private openSnackbar(message: string) {
+    this.snackBar.open(message, "OK", {
+      duration: 4000
+    });
   }
 }
