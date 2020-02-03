@@ -1,7 +1,6 @@
 package pwr.psi.Powierzenia3000.shared.model
 
-import org.springframework.data.util.Lazy
-import pwr.psi.Powierzenia3000.shared.model.Lecturer
+import com.fasterxml.jackson.annotation.JsonIgnore
 import javax.persistence.*
 
 @Entity
@@ -10,6 +9,7 @@ data class KnowledgeArea(
         val id: Long = 0,
         val name: String = "",
         @ManyToMany
+        @JsonIgnore
         val lecturers: Set<Lecturer> = setOf()
 ){
 

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import pwr.psi.Powierzenia3000.raport.service.RaportService
+import pwr.psi.Powierzenia3000.shared.model.Entrustment
 import pwr.psi.Powierzenia3000.utils.toResponseEntity
 
 @RestController
@@ -19,5 +20,8 @@ class RaportController(private val raportService: RaportService) {
     @GetMapping("/list/{id}")
     fun getLecturerEntrustments(@PathVariable id: String) =
             raportService.getLecturerEntrustments(id).toResponseEntity()
+
+    @GetMapping("/all")
+    fun getAllEntrustments(): ResponseEntity<MutableList<Entrustment>> = raportService.getAllEntrustments().toResponseEntity()
 
 }

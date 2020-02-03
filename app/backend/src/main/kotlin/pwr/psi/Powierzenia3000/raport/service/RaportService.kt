@@ -14,4 +14,6 @@ class RaportService(private val entrustmentRepository: EntrustmentRepository, pr
         val lecturer = lecturerRepository.findLecturerById(lecturerId.toLong()) ?: return null
         return entrustmentRepository.findEntrustmentByLecturer(lecturer)
     }
+
+    fun getAllEntrustments() = entrustmentRepository.findAll()
 }
