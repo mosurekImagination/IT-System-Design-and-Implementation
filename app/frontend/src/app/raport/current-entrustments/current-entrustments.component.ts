@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { RaportEntrustmentPresenter } from "src/shared/presenter-models/RaportEntrustmentPresenter";
-import { EntrustmentStatus } from "src/shared/models/Entrustment";
+import { EntrustmentStatus, Entrustment } from "src/shared/models/Entrustment";
+import { ApiService } from "src/app/core/api.service";
+import { map } from "rxjs/operators";
 
 @Component({
   selector: "app-current-entrustments",
@@ -8,12 +10,29 @@ import { EntrustmentStatus } from "src/shared/models/Entrustment";
   styleUrls: ["./current-entrustments.component.scss"]
 })
 export class CurrentEntrustmentsComponent implements OnInit {
-  constructor() {}
+  constructor(private apiService: ApiService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    // TODO : WHY THIS DOESNT WORK ?!
+    this.apiService
+      .get<Entrustment[]>(`raport/free`)
+      .pipe(
+        map(
+          (entrustment: Entrustment) =>
+            ({
+              courseName: entrustment.courseId.code,
+              form: entrustment.courseId.courseType,
+              hours: entrustment.hours,
+              message: entrustment.answer,
+              status: entrustment.entrustmentStatus
+            } as RaportEntrustmentPresenter)
+        )
+      )
+      .subscribe(result => (this.dataSource = tempData));
+  }
 
   displayedColumns = ["col1", "col2", "col3", "col4", "col5"];
-  dataSource = tempData;
+  dataSource: RaportEntrustmentPresenter[] = tempData;
 }
 
 const tempData: RaportEntrustmentPresenter[] = [

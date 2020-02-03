@@ -7,7 +7,7 @@ export interface Entrustment {
   entrustmentStatus: string;
   hours: number;
   lecturers: Array<Lecturer>;
-  courseId: Array<Course>;
+  courseId: Course;
 }
 
 export enum EntrustmentStatus {
