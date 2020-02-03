@@ -30,7 +30,7 @@ open class WebSecurityConfiguration()
                 it.registerCorsConfiguration("/**",
                         CorsConfiguration().apply {
                             allowCredentials = true
-                            allowedHeaders = listOf("Authorization")
+                            allowedHeaders = listOf("Authorization", "Content-Type")
                             allowedOrigins = listOf("*")
                             allowedMethods = listOf("*")
                         })

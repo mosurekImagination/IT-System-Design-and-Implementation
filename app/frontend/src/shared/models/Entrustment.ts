@@ -16,3 +16,18 @@ export enum EntrustmentStatus {
   ACCEPTED = "Zaakceptowane",
   PROPOSED = "Zaproponowane"
 }
+
+export function mapEntrustmentStatus(status: EntrustmentStatus): string {
+  switch (status) {
+    case EntrustmentStatus.ACCEPTED:
+      return "ACCEPTED";
+    case EntrustmentStatus.REJECTED:
+      return "REJECTED";
+    case EntrustmentStatus.NEW:
+      return "NEW";
+    case EntrustmentStatus.PROPOSED:
+      return "PROPOSED";
+    default:
+      break;
+  }
+}
