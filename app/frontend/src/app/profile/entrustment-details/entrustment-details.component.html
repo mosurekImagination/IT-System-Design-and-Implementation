@@ -1,0 +1,74 @@
+<div class="containter" id="container">
+  <div class="row">
+    <div class="col-sm-6" id="info_section">
+      <div class="row info_row">
+        <div class="col-sm-12" id="title"><b>Propozycja powierzenia:</b></div>
+      </div>
+      <section *ngIf="entrustment">
+        <div class="row info_row">
+          <div class="col-sm-12">
+            Kurs: <span class="details">{{ entrustment.courseName }}</span>
+          </div>
+        </div>
+        <div class="row info_row">
+          <div class="col-sm-12">
+            Kod kursu: <span class="details">{{ entrustment.code }}</span>
+          </div>
+        </div>
+        <div class="row info_row">
+          <div class="col-sm-12">
+            Forma: <span class="details">{{ entrustment.form }}</span>
+          </div>
+        </div>
+
+        <div class="row info_row" id="buttons_section">
+          <div class="col-sm-12">
+            <div class="row" id="decision_section">
+              <div class="col-sm-6">
+                <button
+                  mat-raised-button
+                  class="decision_button"
+                  (click)="acceptClicked()"
+                  [ngClass]="{ selectedyes: optionSelected == 2 }"
+                >
+                  Zaakceptuj
+                </button>
+              </div>
+              <div class="col-sm-6">
+                <button
+                  mat-raised-button
+                  class="decision_button"
+                  (click)="rejectClicked()"
+                  [ngClass]="{ selectedno: optionSelected == 1 }"
+                >
+                  Odrzuć
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <button
+                  mat-raised-button
+                  id="final_accept_button"
+                  [disabled]="optionSelected == 0"
+                  (click)="finalAcceptClicked()"
+                >
+                  Zatwierdź
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="col-sm-6" id="action_section">
+      <mat-form-field appearance="outline" id="message_box">
+        <mat-label>Uwagi</mat-label>
+        <textarea matInput rows="25"></textarea>
+        <mat-icon matSuffix>message</mat-icon>
+        <mat-hint>Wpisz tutaj swoje uwagi</mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

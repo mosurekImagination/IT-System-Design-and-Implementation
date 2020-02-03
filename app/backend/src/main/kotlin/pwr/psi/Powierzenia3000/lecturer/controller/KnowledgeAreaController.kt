@@ -19,7 +19,8 @@ class KnowledgeAreaController (private val knowledgeAreaService: KnowledgeAreaSe
     @GetMapping("/lecturer/{id}")
     fun getKnowledgeByLecturer(@PathVariable id: String): ResponseEntity<List<KnowledgeArea>>? {
         val lecturer = lecturerService.getLecturerById(id.toLong())
-        return lecturer?.let { knowledgeAreaService.getKnowledgeAreaByLecturer(it).toResponseEntity() }
+        val x =lecturer?.let { knowledgeAreaService.getKnowledgeAreaByLecturer(it).toResponseEntity() }
+        return x
     }
 
     @GetMapping("/all")
