@@ -45,6 +45,7 @@ export class AuthService {
           `lecturer/id/${user.databaseId}`
         );
         this.currentId = user.databaseId;
+        console.log(`USER ID: ${this.currentId}`);
       }
     });
   }

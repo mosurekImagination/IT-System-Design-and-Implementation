@@ -4,7 +4,7 @@ export interface Course {
   id: number;
   code: string;
   courseType: string;
-  translations: Array<CourseTranslation>;
+  translation: Array<CourseTranslation>;
 }
 
 export enum CourseType {

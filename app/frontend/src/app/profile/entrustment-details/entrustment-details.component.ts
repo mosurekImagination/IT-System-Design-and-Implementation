@@ -7,6 +7,7 @@ import { ApiService } from "src/app/core/api.service";
 import { Entrustment } from "src/shared/models/Entrustment";
 import { map } from "rxjs/operators";
 import { EntrustmentPresenter } from "src/shared/presenter-models/EntrustmentPresenter";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-entrustment-details",
@@ -33,7 +34,9 @@ export class EntrustmentDetailsComponent implements OnInit {
       .pipe(
         map((ent: Entrustment) => {
           return {
-            courseName: ent.courseId.code,
+            courseName: ent.courseId.translation.find(
+              trl => trl.languageCode == environment.language
+            ).name,
             code: ent.courseId.code,
             form: ent.courseId.courseType
           } as EntrustmentDetailsPresenter;
