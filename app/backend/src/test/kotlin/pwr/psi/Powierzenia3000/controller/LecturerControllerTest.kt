@@ -14,7 +14,11 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.security.test.context.support.WithMockUser
 import org.springframework.test.web.servlet.MockMvc
+import pwr.psi.Powierzenia3000.lecturer.controller.KnowledgeAreaController
 import pwr.psi.Powierzenia3000.lecturer.controller.LecturerController
+import pwr.psi.Powierzenia3000.lecturer.repository.KnowledgeAreaRepository
+import pwr.psi.Powierzenia3000.lecturer.repository.LecturerRepository
+import pwr.psi.Powierzenia3000.lecturer.service.KnowledgeAreaService
 import pwr.psi.Powierzenia3000.lecturer.service.LecturerService
 import pwr.psi.Powierzenia3000.shared.model.Lecturer
 
@@ -27,6 +31,9 @@ class LecturerControllerTest {
 
     @MockBean
     private lateinit var lecturerService: LecturerService
+
+    @MockBean
+    private lateinit var knowledgeAreaRepository: KnowledgeAreaRepository
 
     @BeforeAll
     fun setup(){
