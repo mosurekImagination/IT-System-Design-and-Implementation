@@ -4,6 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { AuthService } from "./core/auth.service";
 import { TimeoutError } from "rxjs";
 import { UserRoleMapperService } from './core/user-role-mapper.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: "app-root",
@@ -11,7 +12,7 @@ import { UserRoleMapperService } from './core/user-role-mapper.service';
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit {
-  constructor(private apiService: ApiService, private auth: AuthService, private roleMap : UserRoleMapperService) {}
+  constructor(private apiService: ApiService, public auth: AuthService, private roleMap : UserRoleMapperService) {}
 
   emailText: string;
   passwordText: string;
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
   
 
   ngOnInit(): void {
+    console.log("environment language:", environment.language)
   }
 
   signIn() {
