@@ -1,13 +1,18 @@
 import { Component, OnInit } from "@angular/core";
-import { Entrustment, EntrustmentStatus } from "src/shared/models/Entrustment";
+import {
+  Entrustment,
+  EntrustmentStatus,
+  mapEntrustmentStatus
+} from "src/shared/models/Entrustment";
 import { EntrustmentPresenter } from "src/shared/presenter-models/EntrustmentPresenter";
 import { Observable } from "rxjs";
 import { ApiService } from "src/app/core/api.service";
 import { AuthService } from "src/app/core/auth.service";
-import { switchMap, map } from "rxjs/operators";
+import { switchMap, map, tap } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { environment } from "src/environments/environment";
 import { CourseType } from "src/shared/models/Course";
+import { MatSnackBar } from "@angular/material";
 
 @Component({
   selector: "app-entrustment-propositions",
@@ -17,16 +22,21 @@ import { CourseType } from "src/shared/models/Course";
 export class EntrustmentPropositionsComponent implements OnInit {
   displayedColumns = ["col1", "col2", "col3", "col4"];
   dataSource: EntrustmentPresenter[];
+
+  entrustments: Entrustment[];
+
   constructor(
     private apiService: ApiService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
     this.apiService
       .get<Entrustment[]>(`raport/list/${this.auth.currentId}`)
       .pipe(
+        tap(entrustments => (this.entrustments = entrustments)),
         map((entrustments: Entrustment[]) => {
           return entrustments.map(
             (ent: Entrustment) =>
@@ -50,17 +60,43 @@ export class EntrustmentPropositionsComponent implements OnInit {
 
   private acceptEntrustment(entrustmentId: number) {
     console.log(`ACCEPT clicked, id: ${entrustmentId}`);
-    //this.sendAcceptEntrustment()
+
+    const toPut = this.entrustments.find(ent => ent.id == entrustmentId);
+    console.log(toPut);
+    toPut.entrustmentStatus = mapEntrustmentStatus(EntrustmentStatus.ACCEPTED);
+
+    this.apiService
+      .put<Entrustment>(`entrustment/update`, toPut)
+      .subscribe(response => {
+        console.log("Put success");
+        this.openSnackbar("Zaakceptowano!");
+      });
   }
 
   private rejectEntrustment(entrustmentId: number) {
     console.log(`REJECT clicked, id: ${entrustmentId}`);
-    //this.sendRejectEntrustment()
+
+    const toPut = this.entrustments.find(ent => ent.id == entrustmentId);
+    console.log(toPut);
+    toPut.entrustmentStatus = mapEntrustmentStatus(EntrustmentStatus.REJECTED);
+
+    this.apiService
+      .put<Entrustment>(`entrustment/update`, toPut)
+      .subscribe(response => {
+        console.log("Put success");
+        this.openSnackbar("Odrzucono!");
+      });
   }
 
   private entrustmentInfo(entrustmentId: number) {
     console.log(`INFO clicked, id: ${entrustmentId}`);
     this.router.navigate(["/profile/entrustmentDetails", entrustmentId]);
+  }
+
+  private openSnackbar(message: string) {
+    this.snackBar.open(message, "OK", {
+      duration: 2000
+    });
   }
 
   private sendAcceptEntrustment(entrustment: Entrustment) {
