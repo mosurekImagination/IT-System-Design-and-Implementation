@@ -1,7 +1,10 @@
+import { CourseTranslation } from "./CourseTranslation";
+
 export interface Course {
   id: number;
   code: string;
   courseType: string;
+  translations: Array<CourseTranslation>;
 }
 
 export enum CourseType {

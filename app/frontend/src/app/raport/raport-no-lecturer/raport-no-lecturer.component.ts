@@ -10,16 +10,7 @@ import { ApiService } from "src/app/core/api.service";
   styleUrls: ["./raport-no-lecturer.component.scss"]
 })
 export class RaportNoLecturerComponent implements OnInit {
-  displayedColumns = [
-    "col1",
-    "col2",
-    "col3",
-    "col4",
-    "col5",
-    "col6",
-    "col7",
-    "col8"
-  ];
+  displayedColumns = ["col1", "col2", "col3", "col4", "col5"];
   dataSource = tempData;
   constructor(private apiService: ApiService) {}
 
@@ -39,39 +30,27 @@ const tempData: NoLecturerPresenter[] = [
     courseName: "Podstawy baz danych",
     form: "Ćwiczenia",
     hours: 5,
-    knowledgeArea: "Bazy danych",
-    leftToGive: 10,
-    semester: 3,
-    year: 2
+    knowledgeArea: "Bazy danych"
   } as NoLecturerPresenter,
   {
     code: "ABC-123",
     courseName: "Podstawy baz danych",
     form: "Ćwiczenia",
     hours: 5,
-    knowledgeArea: "Bazy danych",
-    leftToGive: 10,
-    semester: 3,
-    year: 2
+    knowledgeArea: "Bazy danych"
   } as NoLecturerPresenter,
   {
     code: "ABC-123",
     courseName: "Podstawy baz danych",
     form: "Ćwiczenia",
     hours: 5,
-    knowledgeArea: "Bazy danych",
-    leftToGive: 10,
-    semester: 3,
-    year: 2
+    knowledgeArea: "Bazy danych"
   } as NoLecturerPresenter,
   {
     code: "ABC-123",
     courseName: "Podstawy baz danych",
     form: "Ćwiczenia",
     hours: 5,
-    knowledgeArea: "Bazy danych",
-    leftToGive: 10,
-    semester: 3,
-    year: 2
+    knowledgeArea: "Bazy danych"
   } as NoLecturerPresenter
 ];

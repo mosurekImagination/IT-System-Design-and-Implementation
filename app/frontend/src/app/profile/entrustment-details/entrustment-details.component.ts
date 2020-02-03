@@ -35,9 +35,7 @@ export class EntrustmentDetailsComponent implements OnInit {
           return {
             courseName: ent.courseId.code,
             code: ent.courseId.code,
-            form: ent.courseId.courseType,
-            semester: 2,
-            year: 1
+            form: ent.courseId.courseType
           } as EntrustmentDetailsPresenter;
         })
       )
