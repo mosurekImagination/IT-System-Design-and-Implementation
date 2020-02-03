@@ -62,6 +62,13 @@ class ApplicationStartup(
                             knowledgeArea = savedAreas.toSet())
             )
             lecturerRepository.saveAll(lecturers)
+            savedAreas[0].copy(lecturers = setOf(lecturers[0], lecturers[1])).let { knowledgeAreaRepository.save(it) }
+            savedAreas[1].copy(lecturers = setOf(lecturers[2])).let { knowledgeAreaRepository.save(it) }
+            savedAreas[2].copy(lecturers = setOf(lecturers[2], lecturers[1])).let { knowledgeAreaRepository.save(it) }
+            savedAreas[3].copy(lecturers = setOf(lecturers[0])).let { knowledgeAreaRepository.save(it) }
+            savedAreas[4].copy(lecturers = setOf(lecturers[1])).let { knowledgeAreaRepository.save(it) }
+            savedAreas[5].copy(lecturers = setOf(lecturers[2])).let { knowledgeAreaRepository.save(it) }
+
             logger.info("saving lecturers")
 
             val courses = arrayListOf(
@@ -201,6 +208,15 @@ class ApplicationStartup(
 
             courseTranslationRepository.saveAll(courseTranslations)
             logger.info("saving course translations")
+
+            val courseTranslationsList = courseTranslationRepository.findAll()
+            coursesList[0].copy(translation = listOf(courseTranslationsList[0], courseTranslationsList[1])).let { courseRepository.save(it) }
+            coursesList[1].copy(translation = listOf(courseTranslationsList[2], courseTranslationsList[3])).let { courseRepository.save(it) }
+            coursesList[2].copy(translation = listOf(courseTranslationsList[4], courseTranslationsList[5])).let { courseRepository.save(it) }
+            coursesList[3].copy(translation = listOf(courseTranslationsList[6], courseTranslationsList[7])).let { courseRepository.save(it) }
+            coursesList[4].copy(translation = listOf(courseTranslationsList[8], courseTranslationsList[9])).let { courseRepository.save(it) }
+            coursesList[5].copy(translation = listOf(courseTranslationsList[10], courseTranslationsList[11])).let { courseRepository.save(it) }
+
 
             val users = listOf(
                     User(token = "Zwf1iC2szdZtJvyJFjQBhYsWj4X2", role = Role.LECTURER),

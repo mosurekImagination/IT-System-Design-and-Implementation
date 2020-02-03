@@ -13,4 +13,6 @@ class KnowledgeAreaService(private val knowledgeAreaRepository: KnowledgeAreaRep
     fun getKnowledgeAreaByName(name: String) = knowledgeAreaRepository.findKnowledgeAreaByName(name)
 
     fun getKnowledgeAreaByLecturer(lecturer: Lecturer) = knowledgeAreaRepository.findKnowledgeAreasByLecturers(lecturer)
+
+    fun getAll() = knowledgeAreaRepository.findAll()
 }

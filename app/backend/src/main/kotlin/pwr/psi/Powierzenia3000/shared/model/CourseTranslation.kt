@@ -1,15 +1,15 @@
 package pwr.psi.Powierzenia3000.shared.model
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.ManyToOne
+import com.fasterxml.jackson.annotation.JsonIgnore
+import javax.persistence.*
 
 @Entity
+@Table(name = "Translation")
 data class CourseTranslation(
         @Id @GeneratedValue
         val id: Long = 0,
         @ManyToOne
+        @JsonIgnore
         val course: Course? = null,
         val languageCode: LanguageCode = LanguageCode.PL,
         val name: String = ""
