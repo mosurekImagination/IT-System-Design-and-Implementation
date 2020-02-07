@@ -2,7 +2,7 @@
 > **Grupa**: 
 > * 228109 - *Paweł Głuszczak* 
 > * 228043 - *Marcin Szeptun*
-> * 000000 - *Tomasz Mosur*
+> * 228068 - *Tomasz Mosur*
 
 # Wybrane wymagania
 ## Funkcjonalne
