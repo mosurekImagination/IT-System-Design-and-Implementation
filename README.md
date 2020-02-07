@@ -25,15 +25,23 @@
 * Każda warstwa systemu budowana jest z osobnego obrazu dockerowego, po czym całośc uruchamiania jest za pomocą skryptu docker-compose.
 * Aplikacja front-endowa budowana jest w dwóch wersjach. W wersji polskiej oraz angielskiej. Z użyciem odpowiedniego adresu URL wybierana jest wersja językowa strony
 * Aplikacja back-endowa posiada zautomatyzowane testy jednostkowe sprawdzające działanie wrażliwych punktów aplikacji.
+* Dodatkowo, została przygotowana konfiguracja środowiska Kubernetesa dla systemu. Pliki konfiguracyjne znajdują się w folderze app/k8s.
+
+# Metodyka DevOps
+* Skonfigurowano środowisko ciągłej integracji Travis, które przy każdej zmianie w repozytorium uruchamia testy jednostkowe zarówno warstwy backendowej jak i frontendowej. Travis informuje każdego developera o każdym niepomyślnym wykonaniu testów. 
+
+# Architektura Docker
+![Architektura Docker](link-to-image)
+
+# Architektura Kubernetes
+![Architektura Kubernetes](link-to-image)
 
 # Uruchamianie aplikacji
-Tutaj opis jak uruchamiać aplikacje 
-
+Aby uruchomić aplikację należy uruchomić skrypt run-docker.sh znajdujący się w folderze app. Aplikacja po uruchomieniu będzie dostępna pod adresem localhost na porcie 80.
 
 # Implementacja systemu
 ## Baza danych
-Tutaj opis implementacji bazy danych
-
+Jako silnik bazy danych wybrano MySQL w wersji 8.0.18. 
 
 ## Front-end
 ### Ekran główny - logowanie
