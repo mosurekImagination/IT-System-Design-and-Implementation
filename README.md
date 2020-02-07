@@ -28,13 +28,17 @@
 * Dodatkowo, została przygotowana konfiguracja środowiska Kubernetesa dla systemu. Pliki konfiguracyjne znajdują się w folderze app/k8s.
 
 # Metodyka DevOps
-* Skonfigurowano środowisko ciągłej integracji Travis, które przy każdej zmianie w repozytorium uruchamia testy jednostkowe zarówno warstwy backendowej jak i frontendowej. Travis informuje każdego developera o każdym niepomyślnym wykonaniu testów. 
+Skonfigurowano środowisko ciągłej integracji Travis, które przy każdej zmianie w repozytorium uruchamia testy jednostkowe zarówno warstwy backendowej jak i frontendowej. Travis informuje każdego developera o każdym niepomyślnym wykonaniu testów.
+
+![Travis](https://github.com/mosurekImagination/it_system_design/blob/master/images/travis.jpg)
 
 # Architektura Docker
-![Architektura Docker](link-to-image)
+
+![ArchitekturaDocker](https://github.com/mosurekImagination/it_system_design/blob/master/images/docker.jpg)
 
 # Architektura Kubernetes
-![Architektura Kubernetes](link-to-image)
+
+![ArchitekturaKubernetes](https://github.com/mosurekImagination/it_system_design/blob/master/images/kubernetes.jpg)
 
 # Uruchamianie aplikacji
 Aby uruchomić aplikację należy uruchomić skrypt run-docker.sh znajdujący się w folderze app. Aplikacja po uruchomieniu będzie dostępna pod adresem localhost na porcie 80.
