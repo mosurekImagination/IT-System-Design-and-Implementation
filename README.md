@@ -96,6 +96,23 @@ Po wybraniu jednej z opcji użytkownikowi wyśtwieli się pobrana lista odpowied
 ![raport_list](readme_resources/front_raport_list.png)
 *Przykładowa lista przedmiotów, które nie mają jeszcze przypisanych powierzeń*
 
+### Dwie wersje językowe
+
+Do aplikacji można po zbudowaniu dostać się za pomocą dwóch ścieżek. 
+ * http://localhost/pl/ - ten link przekieruje użytkownika na wersję polską strony 
+
+![pl](readme_resources/front_ver_pl.png)
+*Raport aktualnych powierzeń w wersji polskiej*
+
+ * http://localhost/en/ - ten link przekieruje użytkownika na wersję polską strony 
+
+![pl](readme_resources/front_ver_en.png)
+*Raport aktualnych powierzeń w wersji angielskiej*
+
+> Na potrzeby projektu przetłumaczone zostały tylko wybrane informacje!
+
+Dane w różnych wersjach językowych to niektóre dane statyczne jak nazwa aplikacji i opcje w nagłówkach oraz ładowane na podstawie wybranego języka dane dynamiczne jak nazwy kursów, które posiadają w bazie danych odpowiednie dla języków translacje.
+
 ## Back-end
 Tutaj opis backendu
 
