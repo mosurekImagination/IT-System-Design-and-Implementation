@@ -24,7 +24,7 @@
     * REST API z użyciem Spring Boota *[Więcej](#back-end)*
 * Każda warstwa systemu budowana jest z osobnego obrazu dockerowego, po czym całośc uruchamiania jest za pomocą skryptu docker-compose.
 * Aplikacja front-endowa budowana jest w dwóch wersjach. W wersji polskiej oraz angielskiej. Z użyciem odpowiedniego adresu URL wybierana jest wersja językowa strony
-* Aplikacja back-endowa posiada zautomatyzowane testy jednostkowe sprawdzające działanie wrażliwych punktów aplikacji.
+* Aplikacja back-endowa posiada przykładowe testy jednostkowe sprawdzające działanie wrażliwych punktów aplikacji.
 * Dodatkowo, została przygotowana konfiguracja środowiska Kubernetesa dla systemu. Pliki konfiguracyjne znajdują się w folderze app/k8s.
 
 # Metodyka DevOps
@@ -126,5 +126,41 @@ Do aplikacji można po zbudowaniu dostać się za pomocą dwóch ścieżek.
 Dane w różnych wersjach językowych to niektóre dane statyczne jak nazwa aplikacji i opcje w nagłówkach oraz ładowane na podstawie wybranego języka dane dynamiczne jak nazwy kursów, które posiadają w bazie danych odpowiednie dla języków translacje.
 
 ## Back-end
-Tutaj opis backendu
 
+Warstwa Backendowa została zaimplementowana zgodnie z diagramem pakietów zawartych w dokumentacji projektu
+
+![Diagram-pakietów](https://user-images.githubusercontent.com/26793954/74110993-5664a900-4b91-11ea-846d-fe0debbf4f90.jpg)
+
+W wyniku implementacji powstały następujące controllery i ich metody:
+* course - localhost/course/
+  * GET/{courseCode} - pobranie informacji o kursie szukając po jego kursie
+  * GET/translation/lang/{languageCode} - pobranie o danych kursów wraz z ich translacjami za pomocą kodu języka (PL lub EN)
+  * GET/translation/{id}/{languageCode} - pobranie informacji o danych kursu w wybranym języku
+  * POST/add - dodanie nowego kursu do bazy danych
+* entrustment - localhost/entrustment/
+  * GET/id/{id} - pobranie informacji o powierzeniu na podstawie id
+  * GET/status/{status} - pobranie informacji o powierzeniach na podstawie ich statusu
+  * PUT/update - aktualizacja powierzenia znajdującego się juz w bazie danych
+  * POST/add - dodanie nowego powierzenia do bazy danych
+* lecturer - localhost/lecturer
+  * GET/surname/{surname} - pobranie informacji o nauczycielach na podstawie nazwiska
+  * GET/id/{id} - pobranie informacji o nauczycielu na podstawie id
+  * GET/all - pobranie informacji na temat wszystkich nauczycieli
+  * PUT/update - aktualizacja danych nauczyciela znajdującego się już w bazie danych
+  * POST/add - dodanie nowego nauczyciela do bazy danych
+* knowledge area - localhost/knowledge
+  * GET/name/{name} - wyszukanie obszaru wiedzy na podstawie jego nazwy
+  * GET/lecturer/{id} - wyszukanie obszaru wiedzy na podstawie nauczyciela, który je posiada
+  * GET/all - pobranie wszystkich dostępnych obszarów wiedzy
+  * POST/add - dodanie nowego obszaru wiedzy do bazy danych
+* raport - localhost/raport
+  * GET/free - pobranie wszystkich powierzeń bez przydzielonych prowadzących
+  * GET/list/{id} - pobranie powierzeń przydzielonych do prowadzącego
+  * GET/all - pobranie wszystkich powierzeń z bazy danych
+
+Oraz większością encji zawartych w diagramie bazy danych (nie uwzględniono encji, które nie były konieczne w implementowanych wymaganiach)
+
+![Diagram_bazy_danych](https://user-images.githubusercontent.com/26793954/74111016-7f853980-4b91-11ea-80f6-cbc558964cf1.jpg)
+
+
+Przy starcie applikacji i inicjalizacji bazy danych tworzone są przykładowe dane, aby mogły być one użyte w warstwie front-endowej.
